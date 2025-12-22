@@ -487,3 +487,61 @@ h1, h2, h3, h4 {
         font-size: 1.3rem;
     }
 }
+/* Estilos para contenido dinámico del JSON */
+.wod-part {
+    margin-bottom: 12px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-lava);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.wod-part strong {
+    color: var(--text-light);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1rem;
+}
+
+.wod-workout {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin: 10px 0;
+    font-weight: 500;
+    color: var(--text-light);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wod-sets, .wod-stations {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    font-family: 'Courier New', monospace;
+}
+
+/* Ajustes para días específicos */
+.tuesday .crossfit .wod-workout {
+    border-left-color: var(--crossfit-red);
+}
+
+.tuesday .weightlifting .wod-workout {
+    border-left-color: var(--weightlifting-green);
+}
+
+.tuesday .endurance .wod-workout {
+    border-left-color: var(--endurance-blue);
+}
+
+/* Mejoras de responsive */
+@media (max-width: 768px) {
+    .wod-part, .wod-workout, .wod-sets, .wod-stations {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+}
