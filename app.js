@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     loadTrainingData();
     
     // Configurar navegación de semanas
-    setupWeekNavigation();
+    setupWeekNavigation(). ;
     
     // Resaltar día actual
     highlightCurrentDay();
