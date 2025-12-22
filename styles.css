@@ -6,12 +6,17 @@
 }
 
 :root {
-    /* Colores CrossFit Vallecas - Tema Oscuro */
+    /* Colores CrossFit Vallecas */
     --primary-dark: #0a0a0a;
     --secondary-dark: #1a1a1a;
     --card-dark: #222222;
-    --accent-red: #ff3b30;
-    --accent-orange: #ff9500;
+    
+    /* Colores específicos para programas */
+    --crossfit-red: #ff3b30;
+    --weightlifting-green: #2ecc71;
+    --endurance-blue: #3498db;
+    
+    /* Colores adicionales */
     --accent-lava: #ff5e3a;
     --text-light: #ffffff;
     --text-gray: #b0b0b0;
@@ -25,20 +30,13 @@
     --friday-color: #f39c12;
     --saturday-color: #1abc9c;
     
-    /* Sombras y efectos */
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    --glow: 0 0 15px rgba(255, 94, 58, 0.5);
-    
     /* Espaciados */
-    --spacing-xs: 8px;
     --spacing-sm: 12px;
     --spacing-md: 20px;
-    --spacing-lg: 30px;
-    --spacing-xl: 40px;
+    --spacing-lg: 25px;
     
     /* Bordes */
-    --border-radius: 12px;
-    --border-radius-lg: 20px;
+    --border-radius: 10px;
 }
 
 /* Estilos Base */
@@ -49,39 +47,26 @@ body {
     min-height: 100vh;
     line-height: 1.6;
     background-image: 
-        radial-gradient(circle at 10% 20%, rgba(255, 94, 58, 0.1) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(255, 94, 58, 0.05) 0%, transparent 20%);
-    position: relative;
-    overflow-x: hidden;
+        radial-gradient(circle at 10% 20%, rgba(255, 94, 58, 0.08) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 94, 58, 0.04) 0%, transparent 20%);
 }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff5e3a' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-}
-
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4 {
     font-family: 'Oswald', sans-serif;
     font-weight: 600;
     line-height: 1.2;
 }
 
-/* Header */
+/* Header Minimalista */
 .main-header {
-    background: linear-gradient(to right, var(--secondary-dark) 0%, #2a2a2a 100%);
-    border-bottom: 3px solid var(--accent-lava);
-    padding: var(--spacing-md) var(--spacing-lg);
+    background: rgba(26, 26, 26, 0.95);
+    border-bottom: 2px solid var(--accent-lava);
+    padding: 15px var(--spacing-lg);
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
 }
 
 .header-container {
@@ -95,82 +80,102 @@ h1, h2, h3, h4, h5 {
 .logo-section {
     display: flex;
     align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
     gap: var(--spacing-sm);
 }
 
-.logo-icon {
+/* Estrella CFVK */
+.logo-star {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, var(--accent-lava) 0%, var(--accent-orange) 100%);
-    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-lava) 0%, #ff9500 100%);
+    position: relative;
+    clip-path: polygon(
+        50% 0%, 
+        61% 35%, 
+        98% 35%, 
+        68% 57%, 
+        79% 91%, 
+        50% 70%, 
+        21% 91%, 
+        32% 57%, 
+        2% 35%, 
+        39% 35%
+    );
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--text-light);
-    box-shadow: var(--glow);
-    animation: pulse 2s infinite;
+    box-shadow: 0 0 15px rgba(255, 94, 58, 0.5);
+    animation: starGlow 2s infinite;
 }
 
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(255, 94, 58, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 94, 58, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 94, 58, 0); }
+@keyframes starGlow {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 94, 58, 0.5);
+    }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(255, 94, 58, 0.8);
+    }
+}
+
+.star-text {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: white;
+    margin-top: 5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .logo-text h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: var(--text-light);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     letter-spacing: 1px;
 }
 
 .logo-text p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-gray);
-    font-weight: 300;
+    font-weight: 400;
 }
 
+/* Navegación de semanas */
 .week-navigation {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
 }
 
 .nav-btn {
     background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     color: var(--text-light);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius);
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
 }
 
 .nav-btn:hover {
-    background: rgba(255, 94, 58, 0.2);
+    background: rgba(255, 94, 58, 0.3);
     border-color: var(--accent-lava);
     transform: translateY(-2px);
 }
 
 .current-week {
     text-align: center;
+    min-width: 200px;
 }
 
 .current-week h2 {
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     color: var(--text-light);
     margin-bottom: 4px;
 }
@@ -178,78 +183,41 @@ h1, h2, h3, h4, h5 {
 .current-week p {
     color: var(--accent-lava);
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
-.header-actions {
-    display: flex;
-    gap: var(--spacing-sm);
-}
-
-.action-btn {
-    background: var(--card-dark);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-light);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius);
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-}
-
-.action-btn:hover {
-    background: rgba(255, 94, 58, 0.2);
-    border-color: var(--accent-lava);
-}
-
-.print-btn:hover {
-    background: rgba(52, 152, 219, 0.2);
-    border-color: #3498db;
-}
-
-.share-btn:hover {
-    background: rgba(46, 204, 113, 0.2);
-    border-color: #2ecc71;
-}
-
-/* Main Content - Week Grid */
+/* Week Grid */
 .week-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: var(--spacing-lg);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     max-width: 1600px;
     margin: 0 auto;
-    position: relative;
-    z-index: 1;
 }
 
+/* Day Cards */
 .day-card {
     background: var(--card-dark);
-    border-radius: var(--border-radius-lg);
+    border-radius: var(--border-radius);
     padding: var(--spacing-md);
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .day-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    border-color: rgba(255, 94, 58, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Colores de borde para cada día */
-.monday { border-left: 5px solid var(--monday-color); }
-.tuesday { border-left: 5px solid var(--tuesday-color); }
-.wednesday { border-left: 5px solid var(--wednesday-color); }
-.thursday { border-left: 5px solid var(--thursday-color); }
-.friday { border-left: 5px solid var(--friday-color); }
-.saturday { border-left: 5px solid var(--saturday-color); }
+/* Colores de borde por día */
+.monday { border-top: 3px solid var(--monday-color); }
+.tuesday { border-top: 3px solid var(--tuesday-color); }
+.wednesday { border-top: 3px solid var(--wednesday-color); }
+.thursday { border-top: 3px solid var(--thursday-color); }
+.friday { border-top: 3px solid var(--friday-color); }
+.saturday { border-top: 3px solid var(--saturday-color); }
 
 .day-header {
     display: flex;
@@ -257,19 +225,19 @@ h1, h2, h3, h4, h5 {
     align-items: center;
     margin-bottom: var(--spacing-md);
     padding-bottom: var(--spacing-sm);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .day-header h3 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
 .date {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 6px 12px;
-    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 5px 12px;
+    border-radius: 15px;
     font-weight: 600;
     font-size: 0.9rem;
     color: var(--text-light);
@@ -290,31 +258,37 @@ h1, h2, h3, h4, h5 {
 
 .training-section.rest-day {
     background: rgba(255, 94, 58, 0.05);
-    border-color: rgba(255, 94, 58, 0.2);
+    border-color: rgba(255, 94, 58, 0.1);
 }
+
+/* Colores específicos para cada sección */
+.crossfit .section-header h4 { color: var(--crossfit-red); }
+.crossfit .section-header i { color: var(--crossfit-red); }
+
+.weightlifting .section-header h4 { color: var(--weightlifting-green); }
+.weightlifting .section-header i { color: var(--weightlifting-green); }
+
+.endurance .section-header h4 { color: var(--endurance-blue); }
+.endurance .section-header i { color: var(--endurance-blue); }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: var(--spacing-sm);
-    padding-bottom: var(--spacing-xs);
+    padding-bottom: 8px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .section-header h4 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.section-header h4 i {
-    color: var(--accent-lava);
-}
-
 .time {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--text-gray);
     font-weight: 500;
 }
@@ -322,11 +296,10 @@ h1, h2, h3, h4, h5 {
 .rest-label {
     background: var(--accent-lava);
     color: white;
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: 4px 10px;
+    border-radius: 15px;
     font-size: 0.8rem;
     font-weight: 600;
-    letter-spacing: 1px;
 }
 
 /* Training Content */
@@ -336,33 +309,33 @@ h1, h2, h3, h4, h5 {
 
 .wod-name {
     font-family: 'Oswald', sans-serif;
-    font-size: 1.4rem;
-    color: var(--accent-lava);
+    font-size: 1.3rem;
+    color: var(--text-light);
     margin-bottom: 8px;
     font-weight: 600;
 }
 
 .wod-type {
     display: inline-block;
-    background: rgba(255, 94, 58, 0.1);
-    color: var(--accent-lava);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-light);
     padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
     font-weight: 600;
     margin-bottom: var(--spacing-md);
 }
 
 .wod-details {
     background: rgba(255, 255, 255, 0.02);
-    border-radius: var(--border-radius);
+    border-radius: 8px;
     padding: var(--spacing-sm);
     margin-top: var(--spacing-sm);
 }
 
 .wod-structure {
     font-family: 'Oswald', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-light);
     margin-bottom: var(--spacing-sm);
     padding-bottom: 8px;
@@ -396,8 +369,8 @@ h1, h2, h3, h4, h5 {
     margin-bottom: var(--spacing-sm);
     padding: var(--spacing-sm);
     background: rgba(255, 255, 255, 0.02);
-    border-radius: 8px;
-    border-left: 3px solid var(--accent-lava);
+    border-radius: 6px;
+    font-size: 0.9rem;
 }
 
 .scaling {
@@ -407,10 +380,10 @@ h1, h2, h3, h4, h5 {
     border-top: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
-/* Weightlifting & Endurance Sections */
+/* Weightlifting & Endurance */
 .focus {
     font-family: 'Oswald', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-light);
     margin-bottom: var(--spacing-sm);
     padding-bottom: 8px;
@@ -419,7 +392,7 @@ h1, h2, h3, h4, h5 {
 
 .training-details {
     background: rgba(255, 255, 255, 0.02);
-    border-radius: var(--border-radius);
+    border-radius: 8px;
     padding: var(--spacing-sm);
 }
 
@@ -438,6 +411,7 @@ h1, h2, h3, h4, h5 {
 .exercise-name {
     color: var(--text-light);
     font-weight: 500;
+    font-size: 0.95rem;
 }
 
 .exercise-sets, .exercise-desc {
@@ -445,20 +419,20 @@ h1, h2, h3, h4, h5 {
     font-size: 0.9rem;
 }
 
-/* Rest Day Styling */
+/* Rest Day */
 .rest-message {
     text-align: center;
     padding: var(--spacing-lg) var(--spacing-md);
 }
 
 .rest-message i {
-    font-size: 3rem;
-    color: rgba(255, 94, 58, 0.3);
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.2);
     margin-bottom: var(--spacing-sm);
 }
 
 .rest-message p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--text-gray);
     margin-bottom: 4px;
 }
@@ -468,194 +442,48 @@ h1, h2, h3, h4, h5 {
     font-size: 0.9rem;
 }
 
-/* Footer */
-.main-footer {
-    background: var(--secondary-dark);
-    border-top: 3px solid var(--accent-lava);
-    padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
-    margin-top: var(--spacing-xl);
-}
-
-.footer-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-xl);
-    max-width: 1600px;
-    margin: 0 auto var(--spacing-lg);
-}
-
-.footer-info {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-md);
-}
-
-.footer-logo {
-    width: 50px;
-    height: 50px;
-    background: linear-gradient(135deg, var(--accent-lava) 0%, var(--accent-orange) 100%);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-light);
-}
-
-.footer-text h3 {
-    font-size: 1.4rem;
-    margin-bottom: 8px;
-    color: var(--text-light);
-}
-
-.footer-text p {
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    margin-bottom: 4px;
-}
-
-.footer-schedule h4,
-.footer-social h4 {
-    font-size: 1.2rem;
-    margin-bottom: var(--spacing-sm);
-    color: var(--text-light);
-}
-
-.footer-schedule p {
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    margin-bottom: 6px;
-}
-
-.social-icons {
-    display: flex;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
-}
-
-.social-icons a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 50%;
-    color: var(--text-light);
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-}
-
-.social-icons a:hover {
-    background: var(--accent-lava);
-    transform: translateY(-3px);
-}
-
-.coach-access {
-    background: rgba(255, 94, 58, 0.1);
-    border: 1px solid var(--accent-lava);
-    color: var(--accent-lava);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius);
-    font-family: 'Raleway', sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    width: 100%;
-    justify-content: center;
-}
-
-.coach-access:hover {
-    background: rgba(255, 94, 58, 0.2);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: var(--spacing-md);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-muted);
-    font-size: 0.85rem;
-}
-
-.version {
-    color: var(--accent-lava);
-    font-weight: 500;
-    margin-top: 4px;
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 1200px) {
     .week-container {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
     .header-container {
         flex-direction: column;
         gap: var(--spacing-md);
     }
     
     .week-navigation {
-        order: 3;
         width: 100%;
-        justify-content: space-between;
+        justify-content: center;
     }
     
-    .header-actions {
-        position: absolute;
-        top: var(--spacing-md);
-        right: var(--spacing-lg);
-    }
-}
-
-@media (max-width: 768px) {
     .week-container {
         grid-template-columns: 1fr;
+        padding: var(--spacing-md);
     }
     
-    .header-actions {
-        position: static;
-        justify-content: center;
-        margin-top: var(--spacing-sm);
-    }
-    
-    .nav-btn span {
-        display: none;
-    }
-    
-    .nav-btn i {
-        margin: 0;
+    .day-card {
+        padding: var(--spacing-sm);
     }
 }
 
 @media (max-width: 480px) {
-    .main-header,
-    .week-container,
-    .main-footer {
-        padding: var(--spacing-md);
-    }
-    
-    .logo {
-        flex-direction: column;
-        text-align: center;
-        gap: var(--spacing-xs);
+    .main-header {
+        padding: 12px var(--spacing-md);
     }
     
     .logo-text h1 {
-        font-size: 1.5rem;
-    }
-    
-    .current-week h2 {
         font-size: 1.4rem;
     }
     
+    .current-week h2 {
+        font-size: 1.2rem;
+    }
+    
     .day-header h3 {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 }
