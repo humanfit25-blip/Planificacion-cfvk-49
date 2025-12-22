@@ -3,56 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CrossFit Vallecas - Planificación Semanal</title>
+    <title>CFVK - Planificación Semanal</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header Minimalista -->
     <header class="main-header">
         <div class="header-container">
             <div class="logo-section">
-                <div class="logo">
-                    <div class="logo-icon">CFV</div>
-                    <div class="logo-text">
-                        <h1>CROSSFIT VALLECAS</h1>
-                        <p>Planificación Semanal de Entrenamientos</p>
-                    </div>
+                <div class="logo-star">
+                    <span class="star-text">CFVK</span>
+                </div>
+                <div class="logo-text">
+                    <h1>CROSSFIT VALLECAS</h1>
+                    <p>Planificación Semanal para Coaches</p>
                 </div>
             </div>
             
+            <!-- Navegación de semanas (funcional) -->
             <div class="week-navigation">
-                <button id="prev-week" class="nav-btn">
-                    <i class="fas fa-chevron-left"></i> Semana Anterior
+                <button id="prev-week" class="nav-btn" title="Semana anterior">
+                    <i class="fas fa-chevron-left"></i>
                 </button>
+                
                 <div class="current-week">
-                    <h2 id="week-range">25 - 30 Diciembre 2023</h2>
+                    <h2 id="week-range">22 - 27 Diciembre 2025</h2>
                     <p id="week-number">Semana 52</p>
                 </div>
-                <button id="next-week" class="nav-btn">
-                    Semana Siguiente <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            
-            <div class="header-actions">
-                <button class="action-btn print-btn">
-                    <i class="fas fa-print"></i> Imprimir
-                </button>
-                <button class="action-btn share-btn">
-                    <i class="fas fa-share-alt"></i> Compartir
+                
+                <button id="next-week" class="nav-btn" title="Semana siguiente">
+                    <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content - Week Grid -->
+    <!-- Week Grid - Semana del 22 al 27 Diciembre 2025 -->
     <main class="week-container">
-        <!-- Monday -->
+        <!-- Lunes 22/12/2025 -->
         <div class="day-card monday">
             <div class="day-header">
                 <h3>LUNES</h3>
-                <div class="date" id="date-mon">25 DIC</div>
+                <div class="date">22 DIC</div>
             </div>
             
             <div class="training-section crossfit">
@@ -128,11 +122,11 @@
             </div>
         </div>
 
-        <!-- Tuesday -->
+        <!-- Martes 23/12/2025 -->
         <div class="day-card tuesday">
             <div class="day-header">
                 <h3>MARTES</h3>
-                <div class="date" id="date-tue">26 DIC</div>
+                <div class="date">23 DIC</div>
             </div>
             
             <div class="training-section crossfit">
@@ -152,9 +146,6 @@
                         </ul>
                         <div class="wod-description">
                             <p>AMRAP clásico para trabajar resistencia muscular. Enfoque en mantener buen ritmo.</p>
-                        </div>
-                        <div class="scaling">
-                            <strong>Scaling:</strong> Push-ups en rodillas, bandas en pull-ups
                         </div>
                     </div>
                 </div>
@@ -176,10 +167,6 @@
                             <span class="exercise-name">Front Squat</span>
                             <span class="exercise-sets">4x5 @75%</span>
                         </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Jerk Dip</span>
-                            <span class="exercise-sets">3x8 @40%</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -200,20 +187,16 @@
                             <span class="exercise-name">Intervalos</span>
                             <span class="exercise-desc">8x500m @2:00/500m</span>
                         </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Vuelta a calma</span>
-                            <span class="exercise-desc">1000m suave + estiramientos</span>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Wednesday -->
+        <!-- Miércoles 24/12/2025 -->
         <div class="day-card wednesday">
             <div class="day-header">
                 <h3>MIÉRCOLES</h3>
-                <div class="date" id="date-wed">27 DIC</div>
+                <div class="date">24 DIC</div>
             </div>
             
             <div class="training-section crossfit">
@@ -222,21 +205,15 @@
                     <span class="time">07:00 - 21:00</span>
                 </div>
                 <div class="training-content">
-                    <div class="wod-name">"HELEN"</div>
-                    <div class="wod-type">3 Rounds for Time</div>
+                    <div class="wod-name">"NOCHEBUENA ESPECIAL"</div>
+                    <div class="wod-type">EMOM 30'</div>
                     <div class="wod-details">
-                        <div class="wod-structure">3 Rondas</div>
+                        <div class="wod-structure">Cada minuto durante 30'</div>
                         <ul class="exercise-list">
-                            <li>400m Run</li>
-                            <li>21 Kettlebell Swings (24/16 kg)</li>
-                            <li>12 Pull-ups</li>
+                            <li>Min 1: 10 Box Jumps (24/20")</li>
+                            <li>Min 2: 10 KB Swings (24/16 kg)</li>
+                            <li>Min 3: 10 Burpees</li>
                         </ul>
-                        <div class="wod-description">
-                            <p>WOD de resistencia con componente cardiovascular y fuerza. Mantener ritmo constante en las carreras.</p>
-                        </div>
-                        <div class="scaling">
-                            <strong>Scaling:</strong> KB más ligera, bandas en pull-ups
-                        </div>
                     </div>
                 </div>
             </div>
@@ -250,7 +227,6 @@
                     <div class="rest-message">
                         <i class="fas fa-bed"></i>
                         <p>Día de descanso activo</p>
-                        <small>Movilidad y recuperación</small>
                     </div>
                 </div>
             </div>
@@ -264,29 +240,28 @@
                     <div class="rest-message">
                         <i class="fas fa-bed"></i>
                         <p>Día de descanso activo</p>
-                        <small>Movilidad y recuperación</small>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Thursday -->
+        <!-- Jueves 25/12/2025 -->
         <div class="day-card thursday">
             <div class="day-header">
                 <h3>JUEVES</h3>
-                <div class="date" id="date-thu">28 DIC</div>
+                <div class="date">25 DIC</div>
             </div>
             
             <div class="training-section crossfit rest-day">
                 <div class="section-header">
                     <h4><i class="fas fa-fire"></i> CROSSFIT</h4>
-                    <span class="rest-label">REST DAY</span>
+                    <span class="rest-label">NAVIDAD</span>
                 </div>
                 <div class="training-content">
                     <div class="rest-message">
-                        <i class="fas fa-bed"></i>
-                        <p>Día de descanso completo</p>
-                        <small>Recuperación y movilidad</small>
+                        <i class="fas fa-gift"></i>
+                        <p>¡Feliz Navidad!</p>
+                        <small>Box cerrado</small>
                     </div>
                 </div>
             </div>
@@ -294,13 +269,13 @@
             <div class="training-section weightlifting rest-day">
                 <div class="section-header">
                     <h4><i class="fas fa-weight-hanging"></i> HALTEROFILIA</h4>
-                    <span class="rest-label">REST DAY</span>
+                    <span class="rest-label">NAVIDAD</span>
                 </div>
                 <div class="training-content">
                     <div class="rest-message">
-                        <i class="fas fa-bed"></i>
-                        <p>Día de descanso completo</p>
-                        <small>Recuperación y movilidad</small>
+                        <i class="fas fa-gift"></i>
+                        <p>¡Feliz Navidad!</p>
+                        <small>Box cerrado</small>
                     </div>
                 </div>
             </div>
@@ -308,23 +283,23 @@
             <div class="training-section endurance rest-day">
                 <div class="section-header">
                     <h4><i class="fas fa-running"></i> ENDURANCE</h4>
-                    <span class="rest-label">REST DAY</span>
+                    <span class="rest-label">NAVIDAD</span>
                 </div>
                 <div class="training-content">
                     <div class="rest-message">
-                        <i class="fas fa-bed"></i>
-                        <p>Día de descanso completo</p>
-                        <small>Recuperación y movilidad</small>
+                        <i class="fas fa-gift"></i>
+                        <p>¡Feliz Navidad!</p>
+                        <small>Box cerrado</small>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Friday -->
+        <!-- Viernes 26/12/2025 -->
         <div class="day-card friday">
             <div class="day-header">
                 <h3>VIERNES</h3>
-                <div class="date" id="date-fri">29 DIC</div>
+                <div class="date">26 DIC</div>
             </div>
             
             <div class="training-section crossfit">
@@ -342,9 +317,6 @@
                         </ul>
                         <div class="wod-description">
                             <p>30 repeticiones de Clean & Jerk por tiempo. Encontrar un ritmo sostenible es clave.</p>
-                        </div>
-                        <div class="scaling">
-                            <strong>Scaling:</strong> Peso reducido según nivel
                         </div>
                     </div>
                 </div>
@@ -366,10 +338,6 @@
                             <span class="exercise-name">Snatch Pull</span>
                             <span class="exercise-sets">4x3 @90%</span>
                         </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Overhead Squat</span>
-                            <span class="exercise-sets">3x5 @65%</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -383,27 +351,19 @@
                     <div class="focus">Assault Bike</div>
                     <div class="training-details">
                         <div class="exercise-item">
-                            <span class="exercise-name">Calentamiento</span>
-                            <span class="exercise-desc">5 min suave</span>
-                        </div>
-                        <div class="exercise-item">
                             <span class="exercise-name">Intervalos</span>
                             <span class="exercise-desc">10x30s/30s (máxima intensidad)</span>
-                        </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Vuelta a calma</span>
-                            <span class="exercise-desc">5 min + estiramientos</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Saturday -->
+        <!-- Sábado 27/12/2025 -->
         <div class="day-card saturday">
             <div class="day-header">
                 <h3>SÁBADO</h3>
-                <div class="date" id="date-sat">30 DIC</div>
+                <div class="date">27 DIC</div>
             </div>
             
             <div class="training-section crossfit">
@@ -423,11 +383,8 @@
                             <li>300 Air Squats</li>
                             <li>1 mile Run</li>
                         </ul>
-                        <div class="wod-description">
-                            <p>Hero WOD en honor a Michael Murphy. Se puede particionar los ejercicios como 20 rondas de 5-10-15.</p>
-                        </div>
                         <div class="scaling">
-                            <strong>Scaling:</strong> Sin chaleco, bandas en pull-ups, push-ups en rodillas
+                            <strong>Scaling:</strong> Sin chaleco, bandas en pull-ups
                         </div>
                     </div>
                 </div>
@@ -445,14 +402,6 @@
                             <span class="exercise-name">Snatch Balance</span>
                             <span class="exercise-sets">5x3 @50%</span>
                         </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Clean Pull</span>
-                            <span class="exercise-sets">4x3 @80%</span>
-                        </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Jerk Recovery</span>
-                            <span class="exercise-sets">3x5 @40%</span>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -469,54 +418,11 @@
                             <span class="exercise-name">Running</span>
                             <span class="exercise-desc">5K a ritmo conversación</span>
                         </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Core Work</span>
-                            <span class="exercise-desc">3x10 cada: planchas, hollow rocks, superman</span>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <!-- Footer -->
-    <footer class="main-footer">
-        <div class="footer-container">
-            <div class="footer-info">
-                <div class="footer-logo">CFV</div>
-                <div class="footer-text">
-                    <h3>CrossFit Vallecas</h3>
-                    <p>Calle del Entrenamiento, 123 • 28051 Madrid</p>
-                    <p>contacto@crossfitvallecas.com • Tel: 910 123 456</p>
-                </div>
-            </div>
-            
-            <div class="footer-schedule">
-                <h4>Horarios</h4>
-                <p>Lunes a Viernes: 6:00 - 22:00</p>
-                <p>Sábados: 8:00 - 15:00</p>
-                <p>Domingos: Cerrado</p>
-            </div>
-            
-            <div class="footer-social">
-                <h4>Síguenos</h4>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
-                <button class="coach-access">
-                    <i class="fas fa-lock"></i> Acceso Coaches
-                </button>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <p>&copy; 2023 CrossFit Vallecas. Todos los derechos reservados.</p>
-            <p class="version">v2.1 • Última actualización: 25/12/2023</p>
-        </div>
-    </footer>
 
     <script src="aap.js"></script>
 </body>
