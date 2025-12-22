@@ -1,0 +1,661 @@
+/* Reset y Variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colores CrossFit Vallecas - Tema Oscuro */
+    --primary-dark: #0a0a0a;
+    --secondary-dark: #1a1a1a;
+    --card-dark: #222222;
+    --accent-red: #ff3b30;
+    --accent-orange: #ff9500;
+    --accent-lava: #ff5e3a;
+    --text-light: #ffffff;
+    --text-gray: #b0b0b0;
+    --text-muted: #888888;
+    
+    /* Colores para días */
+    --monday-color: #3498db;
+    --tuesday-color: #2ecc71;
+    --wednesday-color: #9b59b6;
+    --thursday-color: #e74c3c;
+    --friday-color: #f39c12;
+    --saturday-color: #1abc9c;
+    
+    /* Sombras y efectos */
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --glow: 0 0 15px rgba(255, 94, 58, 0.5);
+    
+    /* Espaciados */
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 20px;
+    --spacing-lg: 30px;
+    --spacing-xl: 40px;
+    
+    /* Bordes */
+    --border-radius: 12px;
+    --border-radius-lg: 20px;
+}
+
+/* Estilos Base */
+body {
+    font-family: 'Raleway', sans-serif;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #2a2a2a 100%);
+    color: var(--text-light);
+    min-height: 100vh;
+    line-height: 1.6;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 94, 58, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255, 94, 58, 0.05) 0%, transparent 20%);
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff5e3a' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+/* Header */
+.main-header {
+    background: linear-gradient(to right, var(--secondary-dark) 0%, #2a2a2a 100%);
+    border-bottom: 3px solid var(--accent-lava);
+    padding: var(--spacing-md) var(--spacing-lg);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.logo-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--accent-lava) 0%, var(--accent-orange) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-light);
+    box-shadow: var(--glow);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 94, 58, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 94, 58, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 94, 58, 0); }
+}
+
+.logo-text h1 {
+    font-size: 1.8rem;
+    color: var(--text-light);
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+}
+
+.logo-text p {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    font-weight: 300;
+}
+
+.week-navigation {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-light);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.nav-btn:hover {
+    background: rgba(255, 94, 58, 0.2);
+    border-color: var(--accent-lava);
+    transform: translateY(-2px);
+}
+
+.current-week {
+    text-align: center;
+}
+
+.current-week h2 {
+    font-size: 1.8rem;
+    color: var(--text-light);
+    margin-bottom: 4px;
+}
+
+.current-week p {
+    color: var(--accent-lava);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.action-btn {
+    background: var(--card-dark);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.action-btn:hover {
+    background: rgba(255, 94, 58, 0.2);
+    border-color: var(--accent-lava);
+}
+
+.print-btn:hover {
+    background: rgba(52, 152, 219, 0.2);
+    border-color: #3498db;
+}
+
+.share-btn:hover {
+    background: rgba(46, 204, 113, 0.2);
+    border-color: #2ecc71;
+}
+
+/* Main Content - Week Grid */
+.week-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.day-card {
+    background: var(--card-dark);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.day-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 94, 58, 0.3);
+}
+
+/* Colores de borde para cada día */
+.monday { border-left: 5px solid var(--monday-color); }
+.tuesday { border-left: 5px solid var(--tuesday-color); }
+.wednesday { border-left: 5px solid var(--wednesday-color); }
+.thursday { border-left: 5px solid var(--thursday-color); }
+.friday { border-left: 5px solid var(--friday-color); }
+.saturday { border-left: 5px solid var(--saturday-color); }
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.day-header h3 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.date {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Training Sections */
+.training-section {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.training-section:last-child {
+    margin-bottom: 0;
+}
+
+.training-section.rest-day {
+    background: rgba(255, 94, 58, 0.05);
+    border-color: rgba(255, 94, 58, 0.2);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-header h4 {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-header h4 i {
+    color: var(--accent-lava);
+}
+
+.time {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    font-weight: 500;
+}
+
+.rest-label {
+    background: var(--accent-lava);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Training Content */
+.training-content {
+    padding-top: var(--spacing-sm);
+}
+
+.wod-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4rem;
+    color: var(--accent-lava);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.wod-type {
+    display: inline-block;
+    background: rgba(255, 94, 58, 0.1);
+    color: var(--accent-lava);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+}
+
+.wod-details {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.wod-structure {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.exercise-list {
+    list-style: none;
+    margin-bottom: var(--spacing-sm);
+}
+
+.exercise-list li {
+    padding: 6px 0;
+    padding-left: 24px;
+    position: relative;
+    color: var(--text-gray);
+}
+
+.exercise-list li::before {
+    content: '•';
+    color: var(--accent-lava);
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: 2px;
+}
+
+.wod-description {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-lava);
+}
+
+.scaling {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    padding-top: var(--spacing-sm);
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* Weightlifting & Endurance Sections */
+.focus {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.training-details {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+}
+
+.exercise-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.exercise-item:last-child {
+    border-bottom: none;
+}
+
+.exercise-name {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.exercise-sets, .exercise-desc {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+}
+
+/* Rest Day Styling */
+.rest-message {
+    text-align: center;
+    padding: var(--spacing-lg) var(--spacing-md);
+}
+
+.rest-message i {
+    font-size: 3rem;
+    color: rgba(255, 94, 58, 0.3);
+    margin-bottom: var(--spacing-sm);
+}
+
+.rest-message p {
+    font-size: 1.2rem;
+    color: var(--text-gray);
+    margin-bottom: 4px;
+}
+
+.rest-message small {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Footer */
+.main-footer {
+    background: var(--secondary-dark);
+    border-top: 3px solid var(--accent-lava);
+    padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 1600px;
+    margin: 0 auto var(--spacing-lg);
+}
+
+.footer-info {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+}
+
+.footer-logo {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--accent-lava) 0%, var(--accent-orange) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.footer-text h3 {
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    color: var(--text-light);
+}
+
+.footer-text p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.footer-schedule h4,
+.footer-social h4 {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-light);
+}
+
+.footer-schedule p {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.social-icons {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: var(--accent-lava);
+    transform: translateY(-3px);
+}
+
+.coach-access {
+    background: rgba(255, 94, 58, 0.1);
+    border: 1px solid var(--accent-lava);
+    color: var(--accent-lava);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    width: 100%;
+    justify-content: center;
+}
+
+.coach-access:hover {
+    background: rgba(255, 94, 58, 0.2);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.version {
+    color: var(--accent-lava);
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .week-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .header-container {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .week-navigation {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .header-actions {
+        position: absolute;
+        top: var(--spacing-md);
+        right: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 768px) {
+    .week-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-actions {
+        position: static;
+        justify-content: center;
+        margin-top: var(--spacing-sm);
+    }
+    
+    .nav-btn span {
+        display: none;
+    }
+    
+    .nav-btn i {
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header,
+    .week-container,
+    .main-footer {
+        padding: var(--spacing-md);
+    }
+    
+    .logo {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-xs);
+    }
+    
+    .logo-text h1 {
+        font-size: 1.5rem;
+    }
+    
+    .current-week h2 {
+        font-size: 1.4rem;
+    }
+    
+    .day-header h3 {
+        font-size: 1.5rem;
+    }
+}
