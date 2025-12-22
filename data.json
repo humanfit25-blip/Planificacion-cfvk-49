@@ -1,25 +1,11 @@
 {
   "box_info": {
     "name": "CrossFit Vallecas",
-    "address": "Calle del Entrenamiento, 123",
-    "city": "28051 Madrid",
-    "phone": "910 123 456",
-    "email": "contacto@crossfitvallecas.com",
-    "instagram": "@crossfitvallecas",
-    "schedule": {
-      "weekdays": "6:00 - 22:00",
-      "saturdays": "8:00 - 15:00",
-      "sundays": "Cerrado"
-    }
+    "code": "CFVK"
   },
-  "coaches": [
-    {"name": "Carlos", "specialty": "Halterofilia", "certifications": ["CF-L3", "USAW"]},
-    {"name": "Ana", "specialty": "Gimnásticos", "certifications": ["CF-L2", "Gymnastics"]},
-    {"name": "David", "specialty": "Endurance", "certifications": ["CF-L2", "Endurance"]}
-  ],
-  "training_focus": {
-    "current_cycle": "Fuerza y Potencia",
-    "duration": "8 semanas",
-    "goals": ["Aumentar 1RM en snatch y clean & jerk", "Mejorar tiempos en WODs benchmark"]
+  "current_week": {
+    "start_date": "2025-12-22",
+    "end_date": "2025-12-27",
+    "week_number": 52
   }
 }
