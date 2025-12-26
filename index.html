@@ -3,427 +3,1106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CFVK - Planificación Semanal</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>CrossFit Vallecas - Semana 52 (29 Dic - 03 Ene) | Programación Coaches</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --verde-haltero: #4CAF50;
+            --rojo-crossfit: #f44336;
+            --azul-endurance: #2196F3;
+            --negro: #1a1a1a;
+            --gris-oscuro: #2d2d2d;
+            --gris-medio: #404040;
+            --texto-blanco: #ffffff;
+            --texto-gris: #b0b0b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #0a0a0a;
+            color: var(--texto-blanco);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--negro) 0%, var(--gris-oscuro) 100%);
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid var(--rojo-crossfit);
+        }
+
+        h1 {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: var(--texto-gris);
+            margin-bottom: 15px;
+        }
+
+        .week-info {
+            display: inline-block;
+            background: var(--rojo-crossfit);
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .day-container {
+            margin-bottom: 40px;
+            background: var(--negro);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--gris-oscuro);
+        }
+
+        .day-header {
+            background: linear-gradient(90deg, var(--gris-oscuro) 0%, var(--gris-medio) 100%);
+            padding: 20px;
+            border-bottom: 3px solid var(--rojo-crossfit);
+        }
+
+        .day-title {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 2em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .day-date {
+            color: var(--texto-gris);
+            font-size: 1em;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+        }
+
+        .program {
+            padding: 25px;
+            min-height: 400px;
+            position: relative;
+            border-right: 1px solid var(--gris-oscuro);
+        }
+
+        .program:last-child {
+            border-right: none;
+        }
+
+        .program.haltero {
+            background: linear-gradient(180deg, rgba(76, 175, 80, 0.1) 0%, transparent 100%);
+            border-top: 4px solid var(--verde-haltero);
+        }
+
+        .program.crossfit {
+            background: linear-gradient(180deg, rgba(244, 67, 54, 0.1) 0%, transparent 100%);
+            border-top: 4px solid var(--rojo-crossfit);
+        }
+
+        .program.endurance {
+            background: linear-gradient(180deg, rgba(33, 150, 243, 0.1) 0%, transparent 100%);
+            border-top: 4px solid var(--azul-endurance);
+        }
+
+        .program-title {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .program.haltero .program-title {
+            color: var(--verde-haltero);
+        }
+
+        .program.crossfit .program-title {
+            color: var(--rojo-crossfit);
+        }
+
+        .program.endurance .program-title {
+            color: var(--azul-endurance);
+        }
+
+        .workout-content {
+            font-size: 0.95em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .workout-content h3 {
+            font-size: 1.2em;
+            margin: 15px 0 10px 0;
+            font-weight: 700;
+        }
+
+        .workout-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .workout-content li {
+            margin-bottom: 8px;
+        }
+
+        .workout-content strong {
+            color: var(--texto-blanco);
+            font-weight: 700;
+        }
+
+        .feedback-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid;
+        }
+
+        .program.haltero .feedback-box {
+            border-left-color: var(--verde-haltero);
+        }
+
+        .program.crossfit .feedback-box {
+            border-left-color: var(--rojo-crossfit);
+        }
+
+        .program.endurance .feedback-box {
+            border-left-color: var(--azul-endurance);
+        }
+
+        .feedback-title {
+            font-weight: 700;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .program.haltero .feedback-title {
+            color: var(--verde-haltero);
+        }
+
+        .program.crossfit .feedback-title {
+            color: var(--rojo-crossfit);
+        }
+
+        .program.endurance .feedback-title {
+            color: var(--azul-endurance);
+        }
+
+        .feedback-text {
+            font-size: 0.85em;
+            line-height: 1.6;
+            color: var(--texto-gris);
+        }
+
+        .feedback-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            border: 2px solid;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: var(--texto-blanco);
+        }
+
+        .program.haltero .feedback-button {
+            border-color: var(--verde-haltero);
+        }
+
+        .program.haltero .feedback-button:hover {
+            background: var(--verde-haltero);
+            color: #000;
+        }
+
+        .program.crossfit .feedback-button {
+            border-color: var(--rojo-crossfit);
+        }
+
+        .program.crossfit .feedback-button:hover {
+            background: var(--rojo-crossfit);
+            color: #fff;
+        }
+
+        .program.endurance .feedback-button {
+            border-color: var(--azul-endurance);
+        }
+
+        .program.endurance .feedback-button:hover {
+            background: var(--azul-endurance);
+            color: #fff;
+        }
+
+        .rest-day {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.1) 0%, rgba(33, 150, 243, 0.1) 100%);
+            font-size: 1.5em;
+        }
+
+        .rest-day h2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: var(--gris-oscuro);
+            margin: 5% auto;
+            padding: 30px;
+            border: 2px solid var(--rojo-crossfit);
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--gris-medio);
+        }
+
+        .modal-header h2 {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .close {
+            color: var(--texto-gris);
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+            line-height: 1;
+        }
+
+        .close:hover {
+            color: var(--rojo-crossfit);
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .modal-body label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--texto-gris);
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        .modal-body textarea {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            background: var(--negro);
+            border: 2px solid var(--gris-medio);
+            border-radius: 6px;
+            color: var(--texto-blanco);
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1em;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        .modal-body textarea:focus {
+            outline: none;
+            border-color: var(--rojo-crossfit);
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .modal-button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .modal-button.save {
+            background: var(--rojo-crossfit);
+            color: white;
+        }
+
+        .modal-button.save:hover {
+            background: #d32f2f;
+        }
+
+        .modal-button.cancel {
+            background: var(--gris-medio);
+            color: var(--texto-blanco);
+        }
+
+        .modal-button.cancel:hover {
+            background: var(--gris-oscuro);
+        }
+
+        .saved-feedback {
+            background: rgba(76, 175, 80, 0.2);
+            border: 1px solid var(--verde-haltero);
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.85em;
+            color: var(--verde-haltero);
+        }
+
+        .saved-feedback strong {
+            display: block;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1200px) {
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .program {
+                border-right: none;
+                border-bottom: 1px solid var(--gris-oscuro);
+            }
+
+            .program:last-child {
+                border-bottom: none;
+            }
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(244, 67, 54, 0.3);
+            color: var(--rojo-crossfit);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 10px;
+            border: 1px solid var(--rojo-crossfit);
+        }
+
+        .special-badge {
+            display: inline-block;
+            background: rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 10px;
+            border: 1px solid #ffd700;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Minimalista -->
-    <header class="main-header">
-        <div class="header-container">
-            <div class="logo-section">
-                <div class="logo-star">
-                    <span class="star-text">CFVK</span>
+    <div class="header">
+        <h1>CrossFit Vallecas</h1>
+        <p class="subtitle">Programación Semanal | Coaches</p>
+        <div class="week-info">29 DIC 2025 - 03 ENE 2026 | SEMANA 52 🎆</div>
+    </div>
+
+    <!-- LUNES -->
+    <div class="day-container">
+        <div class="day-header">
+            <div class="day-title">Lunes</div>
+            <div class="day-date">29/12/2025</div>
+        </div>
+        <div class="programs-grid">
+            <!-- HALTEROFILIA -->
+            <div class="program haltero">
+                <div class="program-title">HALTEROFILIA</div>
+                <div class="workout-content">
+                    <h3>PART 1: Shoulder Press</h3>
+                    <ul>
+                        <li>5 x 3 @ 80-85% 1RM</li>
+                        <li>Rest 2:00 between sets</li>
+                    </ul>
+
+                    <h3>PART 2: Push Press</h3>
+                    <ul>
+                        <li>4 x 2 @ 85-90% 1RM</li>
+                        <li>Rest 2:30 between sets</li>
+                    </ul>
+
+                    <h3>PART 3: Muscle Snatch</h3>
+                    <ul>
+                        <li>5 x 3 @ 50-55% 1RM Snatch</li>
+                        <li>Tempo: 2 sec pause at hip</li>
+                        <li>Rest 1:30 between sets</li>
+                    </ul>
+
+                    <h3>PART 4: Power Snatch</h3>
+                    <ul>
+                        <li>4 x 2 @ 70-75% 1RM Snatch</li>
+                        <li>Rest 2:00 between sets</li>
+                    </ul>
                 </div>
-                <div class="logo-text">
-                    <h1>CROSSFIT VALLECAS</h1>
-                    <p>Planificación Semanal para Coaches</p>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Sesión de fuerza y potencia de tren superior. El shoulder press estricto desarrolla base, el push press añade componente pliométrico. El muscle snatch es técnico - enfatiza la extensión completa antes del pull bajo la barra (pausa de 2" en cadera). Power snatch cierra con velocidad. Orden importante: de estricto a explosivo. Total: 60-75 minutos. Ajusta porcentajes según nivel técnico del atleta.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('lunes-haltero', 'Lunes - Halterofilia')">💬 Añadir Notas Coach</button>
+                    <div id="saved-lunes-haltero"></div>
                 </div>
             </div>
+
+            <!-- CROSSFIT -->
+            <div class="program crossfit">
+                <div class="program-title">CROSSFIT</div>
+                <div class="workout-content">
+                    <h3>PART 1:</h3>
+                    <p><strong>Every Minute On The Minute For 10 minutes:</strong></p>
+                    <ul>
+                        <li>Odd minutes: 3 Front Squats (70-75% 1RM)</li>
+                        <li>Even minutes: 8 Dumbbell Push Press (22.5/15 kg)</li>
+                    </ul>
+
+                    <h3>PART 2: For Time</h3>
+                    <ul>
+                        <li>30 Hang Clusters (60/40 kg)</li>
+                        <li><strong>Every minute until you finish:</strong> 5 Burpees</li>
+                    </ul>
+
+                    <h3>THEN:</h3>
+                    <ul>
+                        <li>20 Wall Climbs / 40 Worm Walks</li>
+                        <li><strong>Every minute until you finish:</strong> 20 Double Unders</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        WOD de alta intensidad con doble penalty system. Asegúrate de que los atletas entiendan que son DOS secciones separadas: primero completan los 30 hang clusters con penalty de burpees cada minuto, y DESPUÉS atacan los wall climbs con penalty de double unders. El EMOM inicial es activación neuromuscular - vigila técnica en front squats con fatiga. Tiempo estimado total: 25-35 minutos. Scaling: Reduce reps de clusters (20-25), worm walks en lugar de wall climbs, singles en lugar de DU.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('lunes-crossfit', 'Lunes - CrossFit')">💬 Añadir Notas Coach</button>
+                    <div id="saved-lunes-crossfit"></div>
+                </div>
+            </div>
+
+            <!-- ENDURANCE -->
+            <div class="program endurance">
+                <div class="program-title">ENDURANCE</div>
+                <div class="workout-content">
+                    <h3>Cap: 35 minutes</h3>
+                    <p><strong>10 Rounds:</strong></p>
+                    <ul>
+                        <li>100m Run</li>
+                        <li>30 Double Unders</li>
+                        <li>20 Goblet Lunges (24/16 kg)</li>
+                        <li>10 Box Jumps (60/50 cm)</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Motor aeróbico constante con transiciones rápidas. El cap de 35' es fundamental - si los atletas no completan las 10 rondas, registran rondas + reps. Cada ronda debería tomar 3-3.5 minutos. La clave es mantener pace sostenible en la carrera (no sprintar) y ser eficientes en las transiciones. Scaling: step-ups en lugar de box jumps, singles en lugar de DU, reducir peso del goblet.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('lunes-endurance', 'Lunes - Endurance')">💬 Añadir Notas Coach</button>
+                    <div id="saved-lunes-endurance"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MARTES -->
+    <div class="day-container">
+        <div class="day-header">
+            <div class="day-title">Martes</div>
+            <div class="day-date">30/12/2025</div>
+        </div>
+        <div class="programs-grid">
+            <!-- HALTEROFILIA -->
+            <div class="program haltero">
+                <div class="program-title">HALTEROFILIA</div>
+                <div class="workout-content">
+                    <h3>PART 1: Deadlift</h3>
+                    <ul>
+                        <li>5 x 5 @ 75-80% 1RM</li>
+                        <li>Tempo: 3 sec descent</li>
+                        <li>Rest 2:30 between sets</li>
+                    </ul>
+
+                    <h3>PART 2: Squat Clean</h3>
+                    <ul>
+                        <li>5 x 3 @ 70-75% 1RM Clean</li>
+                        <li>Rest 2:30 between sets</li>
+                    </ul>
+
+                    <h3>PART 3: Power Clean</h3>
+                    <ul>
+                        <li>4 x 2 @ 80-85% 1RM Clean</li>
+                        <li>Focus: Speed under bar</li>
+                        <li>Rest 2:00 between sets</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Sesión de tirón + recepción. El deadlift con tempo excéntrico de 3" desarrolla control y fuerza isométrica. Squat clean trabaja posición de recepción profunda - cuida movilidad de tobillo/cadera. Power clean cierra con explosividad - la clave es velocidad bajo la barra, no altura del pull. Progresión lógica: fuerza base → técnica completa → potencia. Total: 60-75 minutos.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('martes-haltero', 'Martes - Halterofilia')">💬 Añadir Notas Coach</button>
+                    <div id="saved-martes-haltero"></div>
+                </div>
+            </div>
+
+            <!-- CROSSFIT -->
+            <div class="program crossfit">
+                <div class="program-title">CROSSFIT</div>
+                <div class="workout-content">
+                    <h3>For Time:</h3>
+                    <p><strong>4 Rounds:</strong></p>
+                    <ul>
+                        <li>200m Run</li>
+                        <li>20 Alternating Russian Swings (24/16 kg)</li>
+                        <li>10 Chest-to-Bar Pull-ups</li>
+                    </ul>
+
+                    <p><strong>Rest 2:00</strong></p>
+
+                    <p><strong>4 Rounds:</strong></p>
+                    <ul>
+                        <li>200m Run</li>
+                        <li>20 Kettlebell Snatches (Alternating, 24/16 kg)</li>
+                        <li>10 Knees-to-Elbows</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Dos bloques de trabajo con descanso programado. El descanso de 2' es estratégico - permite recuperación parcial sin enfriar completamente. El primer bloque trabaja posterior chain + pulling vertical, el segundo añade overhead + core. Tiempo objetivo: 12-16 minutos por bloque (24-32' totales sin contar rest). Scaling: reduce reps (3 rounds), regular pull-ups, knee raises, reduce peso KB.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('martes-crossfit', 'Martes - CrossFit')">💬 Añadir Notas Coach</button>
+                    <div id="saved-martes-crossfit"></div>
+                </div>
+            </div>
+
+            <!-- ENDURANCE -->
+            <div class="program endurance">
+                <div class="program-title">ENDURANCE</div>
+                <div class="workout-content">
+                    <h3>For Time (Team of 3):</h3>
+                    <ul>
+                        <li>100 Calories (any machine)</li>
+                        <li>200 One-Arm Dumbbell Snatches (Alternating, 22.5/15 kg)</li>
+                        <li>150 Air Squats</li>
+                        <li>400 Single Unders</li>
+                        <li>150 Air Squats</li>
+                        <li>200 One-Arm Dumbbell Clean & Jerks (Alternating, 22.5/15 kg)</li>
+                        <li>100 Calories (any machine)</li>
+                    </ul>
+                    <p><strong>Every 5 minutes, all 3 teammates run 100m together</strong></p>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Team chipper con penalty de carrera colectiva. La carrera cada 5' obliga a gestión de tiempo - si están en medio de un movimiento, deben parar, correr los 3 juntos, y retomar. Estrategia: dividir trabajo en chunks (ej: 30 cal / 50 DB snatch / 50 air squats por persona). La estructura es simétrica (cal-DB movement-squats-singles-squats-DB movement-cal). Tiempo estimado: 35-45 minutos. Scaling: reduce reps totales (75 cal, 150 DB movements, 100 squats, 300 singles).
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('martes-endurance', 'Martes - Endurance')">💬 Añadir Notas Coach</button>
+                    <div id="saved-martes-endurance"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MIÉRCOLES -->
+    <div class="day-container">
+        <div class="day-header">
+            <div class="day-title">Miércoles <span class="special-badge">🎆 FIN DE AÑO</span></div>
+            <div class="day-date">31/12/2025</div>
+        </div>
+        <div class="programs-grid">
+            <!-- HALTEROFILIA -->
+            <div class="program haltero">
+                <div class="program-title">HALTEROFILIA</div>
+                <div class="workout-content">
+                    <h3>PART 1: Squat Snatch</h3>
+                    <ul>
+                        <li>Build to heavy single</li>
+                        <li>Then: 4 x 2 @ 85% of today's heavy single</li>
+                        <li>Rest 3:00 between sets</li>
+                    </ul>
+
+                    <h3>PART 2: Clean & Jerk</h3>
+                    <ul>
+                        <li>Build to heavy complex (1 Clean + 1 Jerk)</li>
+                        <li>Then: 3 x (1+1) @ 90% of today's heavy complex</li>
+                        <li>Rest 3:30 between sets</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Sesión de máximos técnicos para cerrar el año. NO es test de 1RM - es "heavy single/complex" donde priorizamos técnica perfecta. Si la técnica se rompe, paramos ahí. Después del heavy, bajamos a porcentajes para trabajo de calidad. El snatch es el movimiento más técnico - asegura movilidad adecuada en warm-up. Clean & jerk permite cargas mayores. Descansos largos son necesarios para recuperación del SNC. Total: 75-90 minutos. Perfecto para atletas avanzados; scaled puede hacer power versions.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('miercoles-haltero', 'Miércoles - Halterofilia')">💬 Añadir Notas Coach</button>
+                    <div id="saved-miercoles-haltero"></div>
+                </div>
+            </div>
+
+            <!-- CROSSFIT -->
+            <div class="program crossfit">
+                <div class="program-title">CROSSFIT <span class="special-badge">2025 SPECIAL</span></div>
+                <div class="workout-content">
+                    <h3>"TWELVE GUNSHOT"</h3>
+                    <p><strong>AMRAP 31 minutes:</strong></p>
+                    <ul>
+                        <li>52 Double Unders</li>
+                        <li>12 Bar Muscle-ups</li>
+                        <li>20 Hang Power Cleans (60/40 kg)</li>
+                        <li>12 Burpees</li>
+                        <li>12 Toes-to-Bar</li>
+                        <li>25 Calories (choice: Row/Bike/Ski)</li>
+                        <li>31 Wall Balls (9/6 kg)</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        El WOD simbólico de cierre de año: 52 semanas, 31 día, 12 mes, 20-25 por 2025. Es un AMRAP brutal - atletas RX completarán 2-4 rondas. La clave es gestión de ritmo desde la primera ronda - no sprintar los DU ni los BMU. Las calories son "choice" para distribuir máquinas y evitar cuellos de botella. Scaling crítico: C2B o burpee pull-ups en lugar de BMU, reduce peso de barbell y wall ball, singles en lugar de DU. Brief importante: este WOD celebra el año, no es competición - que disfruten el sufrimiento.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('miercoles-crossfit', 'Miércoles - CrossFit')">💬 Añadir Notas Coach</button>
+                    <div id="saved-miercoles-crossfit"></div>
+                </div>
+            </div>
+
+            <!-- ENDURANCE -->
+            <div class="program endurance">
+                <div class="program-title">ENDURANCE <span class="special-badge">END GAME</span></div>
+                <div class="workout-content">
+                    <h3>PART 1: EMOM 12'</h3>
+                    <ul>
+                        <li>Minute 1: 12 Dumbbell Jerks (22.5/15 kg)</li>
+                        <li>Minute 2: 31 Jumping Lunges (total)</li>
+                        <li>Minute 3: 52 Flutter Kicks (total)</li>
+                        <li>Repeat 4 rounds</li>
+                    </ul>
+
+                    <h3>At minute 12:</h3>
+                    <p><strong>1km Run</strong></p>
+
+                    <h3>At minute 20: EMOM 12'</h3>
+                    <ul>
+                        <li>Minute 1: 7 Devil Press (22.5/15 kg)</li>
+                        <li>Minute 2: 20 Hollow Rocks</li>
+                        <li>Minute 3: 25 Russian Swings (24/16 kg)</li>
+                        <li>Repeat 4 rounds</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Estructura genial con punto de reagrupación. El 1km empieza en el minuto 12 - los atletas rápidos (sub 4:30) tendrán 3-5' de descanso antes del minuto 20, los lentos llegarán justo. TODOS empiezan el segundo EMOM en el minuto 20, sin importar cuándo terminaron de correr. Esto recompensa el motor aeróbico pero no hunde a los scaled. Brief crítico: explicar que el minuto 20 es inicio fijo para todos. Primer EMOM es upper body + legs, segundo EMOM es full body + core. Tiempo total: 32 minutos. Scaling: reduce peso de DB/KB, reduce reps de devil press (5).
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('miercoles-endurance', 'Miércoles - Endurance')">💬 Añadir Notas Coach</button>
+                    <div id="saved-miercoles-endurance"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JUEVES - AÑO NUEVO -->
+    <div class="day-container">
+        <div class="day-header">
+            <div class="day-title">Jueves <span class="special-badge">🎆 AÑO NUEVO</span></div>
+            <div class="day-date">01/01/2026</div>
+        </div>
+        <div class="programs-grid">
+            <div class="rest-day">
+                <h2>¡FELIZ AÑO NUEVO! 🎆</h2>
+                <p style="font-size: 1.2em; color: var(--texto-gris); margin-top: 10px;">Rest Day - Celebrate responsibly</p>
+                <p style="font-size: 0.95em; color: var(--texto-gris); margin-top: 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Día de descanso completo. Los atletas vienen de una semana intensa (especialmente el miércoles con "TWELVE GUNSHOT" y "END GAME"). La recuperación es parte del entrenamiento. Anima a los atletas a hidratarse bien, comer adecuadamente, y prepararse mentalmente para la semana que viene. El viernes arrancamos 2026 con Hero WODs - necesitan estar frescos.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIERNES -->
+    <div class="day-container">
+        <div class="day-header">
+            <div class="day-title">Viernes</div>
+            <div class="day-date">02/01/2026</div>
+        </div>
+        <div class="programs-grid">
+            <!-- HALTEROFILIA -->
+            <div class="program haltero">
+                <div class="program-title">HALTEROFILIA</div>
+                <div class="workout-content">
+                    <h3>PART 1: Back Squat</h3>
+                    <ul>
+                        <li>5 x 5 @ 75-80% 1RM</li>
+                        <li>Tempo: 3 sec descent, explosive ascent</li>
+                        <li>Rest 2:30 between sets</li>
+                    </ul>
+
+                    <h3>PART 2: Snatch</h3>
+                    <p><strong>Every 90 seconds for 10 sets:</strong></p>
+                    <ul>
+                        <li>1 Snatch @ 75-80% 1RM</li>
+                        <li>Focus: Speed + Precision</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Sesión de fuerza + técnica para arrancar 2026. Back squat con tempo excéntrico desarrolla control y time under tension - es trabajo de hipertrofia/fuerza, no potencia. El snatch en EMOM 90" permite repeticiones de calidad sin fatiga acumulada - cada rep debe ser técnicamente perfecta. Si un atleta falla 2 reps consecutivas, baja el peso 5-10%. Total: 60-70 minutos. Perfecto para volver después del descanso de Año Nuevo.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('viernes-haltero', 'Viernes - Halterofilia')">💬 Añadir Notas Coach</button>
+                    <div id="saved-viernes-haltero"></div>
+                </div>
+            </div>
+
+            <!-- CROSSFIT -->
+            <div class="program crossfit">
+                <div class="program-title">CROSSFIT <span class="hero-badge">HERO WOD</span></div>
+                <div class="workout-content">
+                    <h3>"MONTY"</h3>
+                    <p><strong>4 Rounds For Time:</strong></p>
+                    <ul>
+                        <li>11 Push-ups</li>
+                        <li>7 Squat Cleans (70/47.5 kg)</li>
+                        <li>27 Box Jump Overs (60/50 cm)</li>
+                        <li>7 Squat Cleans (70/47.5 kg)</li>
+                        <li>11 Pull-ups</li>
+                        <li>19 Box Jump Overs (60/50 cm)</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Hero WOD en honor a Navy Petty Officer 2nd Class Sean Monty. Los números tienen significado (fecha de nacimiento/servicio). Es un WOD de volumen alto - 4 rondas de 56 squat cleans + 44 pull-ups/push-ups + 184 box jump overs. Tiempo objetivo: 25-35 minutos para RX. La estrategia es mantener sets pequeños y sostenibles en squat cleans (2-3 reps) y pull-ups (3-5 reps). Los BJO son el "descanso activo". Scaling esencial: reduce peso de barbell (60/40 kg o menos), step-overs en lugar de jumps, reduce a 3 rondas si es necesario. Brief: explicar el significado del WOD para dar contexto y propósito.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('viernes-crossfit', 'Viernes - CrossFit')">💬 Añadir Notas Coach</button>
+                    <div id="saved-viernes-crossfit"></div>
+                </div>
+            </div>
+
+            <!-- ENDURANCE -->
+            <div class="program endurance">
+                <div class="program-title">ENDURANCE <span class="hero-badge">HERO WOD</span></div>
+                <div class="workout-content">
+                    <h3>"DALLAS 5"</h3>
+                    <p><strong>For Time:</strong></p>
+                    <ul>
+                        <li>50 Burpees</li>
+                    </ul>
+                    <p><strong>Then 5 Rounds:</strong></p>
+                    <ul>
+                        <li>10 Wall Ball Shots (9/6 kg)</li>
+                        <li>10 Shoulder-to-Overheads (42.5/30 kg)</li>
+                        <li>10 Pull-ups</li>
+                        <li>10 Box Jumps (60/50 cm)</li>
+                        <li>10 Sit-ups</li>
+                    </ul>
+                    <p><strong>Then:</strong></p>
+                    <ul>
+                        <li>800m Run</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Hero WOD en honor a los 5 oficiales de Dallas caídos en 2016. Estructura: buy-in de 50 burpees, 5 rondas de 50 reps each (250 reps totales), cash-out de 800m. Tiempo objetivo: 30-40 minutos. La clave es pace management - los burpees iniciales queman, no ir all-out. En las 5 rondas, mantener sets de 5 reps y transiciones rápidas. El run final será duro con las piernas cargadas. Scaling: reduce burpees (30-40), reduce peso de wall ball y S2OH, step-ups en lugar de box jumps, reduce a 400m run. Brief importante: contexto del WOD para honrar la memoria.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('viernes-endurance', 'Viernes - Endurance')">💬 Añadir Notas Coach</button>
+                    <div id="saved-viernes-endurance"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SÁBADO -->
+    <div class="day-container">
+        <div class="day-header">
+            <div class="day-title">Sábado</div>
+            <div class="day-date">03/01/2026</div>
+        </div>
+        <div class="programs-grid">
+            <!-- HALTEROFILIA -->
+            <div class="program haltero">
+                <div class="program-title">HALTEROFILIA</div>
+                <div class="workout-content">
+                    <h3>PART 1: Muscle Snatch</h3>
+                    <ul>
+                        <li>6 x 3 @ 45-50% 1RM Snatch</li>
+                        <li>Tempo: 2 sec pause at hip, 1 sec pause overhead</li>
+                        <li>Rest 1:30 between sets</li>
+                    </ul>
+
+                    <h3>PART 2: Drop Snatch</h3>
+                    <ul>
+                        <li>5 x 3 @ 50-60% 1RM Snatch</li>
+                        <li>Focus: Speed under bar</li>
+                        <li>Rest 1:30 between sets</li>
+                    </ul>
+
+                    <h3>PART 3: Power Snatch</h3>
+                    <ul>
+                        <li>5 x 2 @ 75-80% 1RM Snatch</li>
+                        <li>Rest 2:00 between sets</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Sesión técnica de snatch progresiva. Muscle snatch con pausas en cadera y overhead desarrolla fuerza en posiciones clave y control. Drop snatch trabaja velocidad bajo la barra y confianza en recepción overhead - es el movimiento más difícil técnicamente. Power snatch cierra con cargas moderadas-altas aplicando las posiciones trabajadas. Orden importante: de técnico/ligero a potencia. Total: 60-70 minutos. Perfecto para fin de semana - refinar técnica sin acumular fatiga excesiva.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('sabado-haltero', 'Sábado - Halterofilia')">💬 Añadir Notas Coach</button>
+                    <div id="saved-sabado-haltero"></div>
+                </div>
+            </div>
+
+            <!-- CROSSFIT -->
+            <div class="program crossfit">
+                <div class="program-title">CROSSFIT</div>
+                <div class="workout-content">
+                    <h3>Team of 3 - For Time:</h3>
+                    
+                    <p><strong>STATION 1:</strong></p>
+                    <ul>
+                        <li>Teammate A accumulates 60 Devil Press (22.5/15 kg)</li>
+                        <li>Teammates B & C rest</li>
+                        <li>Rotate as needed</li>
+                    </ul>
+
+                    <p><strong>THEN STATION 2:</strong></p>
+                    <ul>
+                        <li>Teammate A accumulates 120 Back Squats (60/40 kg)</li>
+                        <li>While Teammates B & C run 100m together</li>
+                        <li>When B & C return, A rests and B accumulates squats while A & C run</li>
+                        <li>Rotate until 120 squats completed</li>
+                    </ul>
+
+                    <p><strong>THEN STATION 3:</strong></p>
+                    <ul>
+                        <li>Teammate A: Accumulate 90 Bench Press (60/40 kg)</li>
+                        <li>Teammate B: 90 Bicep Curls (20/12.5 kg DBs)</li>
+                        <li>Teammate C: Plank Hold</li>
+                        <li>Rotate every 30 reps or when form breaks</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Team WOD para cerrar la semana con comunidad. STATION 1: Teammate A hace devil press, B y C descansan. A elige cuándo rotar (ej: cada 10 reps). STATION 2: mientras uno hace back squats, los otros 2 corren 100m juntos - cuando regresan, rotan. STATION 3: trabajo simultáneo - uno hace bench, otro curls, otro plank. Rotan cada 30 reps o cuando la forma técnica se rompe. Tiempo estimado: 35-45 minutos. La clave es comunicación entre compañeros y gestión de fatiga. Scaling: reduce reps totales (40 DP, 90 squats, 60 bench/curls), reduce peso.
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('sabado-crossfit', 'Sábado - CrossFit')">💬 Añadir Notas Coach</button>
+                    <div id="saved-sabado-crossfit"></div>
+                </div>
+            </div>
+
+            <!-- ENDURANCE -->
+            <div class="program endurance">
+                <div class="program-title">ENDURANCE</div>
+                <div class="workout-content">
+                    <h3>For Time:</h3>
+                    <ul>
+                        <li>200m Run</li>
+                        <li>60 Double Unders</li>
+                        <li>50 Kettlebell Swings (24/16 kg)</li>
+                        <li>40 Air Squats</li>
+                        <li>400m Run</li>
+                        <li>30 Kettlebell Snatches (Alternating, 24/16 kg)</li>
+                        <li>20 Push-ups</li>
+                        <li>10 Kettlebell Thrusters (24/16 kg)</li>
+                        <li>800m Run</li>
+                        <li>10 Kettlebell Thrusters (24/16 kg)</li>
+                        <li>20 Push-ups</li>
+                        <li>30 Kettlebell Snatches (Alternating, 24/16 kg)</li>
+                        <li>400m Run</li>
+                        <li>40 Air Squats</li>
+                        <li>50 Kettlebell Swings (24/16 kg)</li>
+                        <li>60 Double Unders</li>
+                        <li>200m Run</li>
+                    </ul>
+                </div>
+                <div class="feedback-box">
+                    <div class="feedback-title">FEEDBACK PARA COACHES:</div>
+                    <div class="feedback-text">
+                        Chipper simétrico estilo "there and back" - estructura espejo. Empieza ligero (200m), construye hasta 800m en el centro, y regresa. Total de carrera: 3km. Los kettlebell thrusters en el medio son el punto más duro - solo 10 reps pero después de 800m run con piernas quemadas. Tiempo objetivo: 35-45 minutos. Estrategia: no sprintar las carreras cortas (200/400m), mantener pace sostenible. Los KB movements deben ser unbroken o sets grandes. Scaling: reduce peso KB (20/12 kg), singles en lugar de DU, reduce distancias de run (mantener estructura pero hacer 100/200/400/200/100).
+                    </div>
+                    <button class="feedback-button" onclick="openFeedbackModal('sabado-endurance', 'Sábado - Endurance')">💬 Añadir Notas Coach</button>
+                    <div id="saved-sabado-endurance"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE FEEDBACK -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Notas Coach</h2>
+                <span class="close" onclick="closeFeedbackModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <label for="feedbackText">Añadir observaciones, ajustes o notas para este programa:</label>
+                <textarea id="feedbackText" placeholder="Escribe aquí tus notas sobre la sesión, ajustes realizados, observaciones de los atletas, etc..."></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-button cancel" onclick="closeFeedbackModal()">Cancelar</button>
+                <button class="modal-button save" onclick="saveFeedback()">Guardar Notas</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentFeedbackKey = '';
+        let currentFeedbackTitle = '';
+
+        // Cargar feedbacks guardados al cargar la página
+        window.addEventListener('DOMContentLoaded', () => {
+            loadAllFeedbacks();
+        });
+
+        function loadAllFeedbacks() {
+            const keys = [
+                'lunes-haltero', 'lunes-crossfit', 'lunes-endurance',
+                'martes-haltero', 'martes-crossfit', 'martes-endurance',
+                'miercoles-haltero', 'miercoles-crossfit', 'miercoles-endurance',
+                'viernes-haltero', 'viernes-crossfit', 'viernes-endurance',
+                'sabado-haltero', 'sabado-crossfit', 'sabado-endurance'
+            ];
+
+            keys.forEach(key => {
+                const savedText = localStorage.getItem(`feedback-${key}`);
+                if (savedText) {
+                    displaySavedFeedback(key, savedText);
+                }
+            });
+        }
+
+        function openFeedbackModal(key, title) {
+            currentFeedbackKey = key;
+            currentFeedbackTitle = title;
             
-            <!-- Navegación de semanas (funcional) -->
-            <div class="week-navigation">
-                <button id="prev-week" class="nav-btn" title="Semana anterior">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
+            document.getElementById('modalTitle').textContent = `Notas Coach - ${title}`;
+            
+            // Cargar texto guardado si existe
+            const savedText = localStorage.getItem(`feedback-${key}`);
+            document.getElementById('feedbackText').value = savedText || '';
+            
+            document.getElementById('feedbackModal').style.display = 'block';
+        }
+
+        function closeFeedbackModal() {
+            document.getElementById('feedbackModal').style.display = 'none';
+            document.getElementById('feedbackText').value = '';
+            currentFeedbackKey = '';
+            currentFeedbackTitle = '';
+        }
+
+        function saveFeedback() {
+            const text = document.getElementById('feedbackText').value.trim();
+            
+            if (text) {
+                // Guardar en localStorage
+                localStorage.setItem(`feedback-${currentFeedbackKey}`, text);
                 
-                <div class="current-week">
-                    <h2 id="week-range">22 - 27 Diciembre 2025</h2>
-                    <p id="week-number">Semana 52</p>
-                </div>
+                // Mostrar feedback guardado
+                displaySavedFeedback(currentFeedbackKey, text);
                 
-                <button id="next-week" class="nav-btn" title="Semana siguiente">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+                // Cerrar modal
+                closeFeedbackModal();
+            } else {
+                // Si está vacío, eliminar del localStorage
+                localStorage.removeItem(`feedback-${currentFeedbackKey}`);
+                document.getElementById(`saved-${currentFeedbackKey}`).innerHTML = '';
+                closeFeedbackModal();
+            }
+        }
 
-    <!-- Week Grid - Semana del 22 al 27 Diciembre 2025 -->
-    <main class="week-container">
-        <!-- Lunes 22/12/2025 -->
-        <div class="day-card monday">
-            <div class="day-header">
-                <h3>LUNES</h3>
-                <div class="date">22 DIC</div>
-            </div>
-            
-            <div class="training-section crossfit">
-                <div class="section-header">
-                    <h4><i class="fas fa-fire"></i> CROSSFIT</h4>
-                    <span class="time">07:00 - 21:00</span>
-                </div>
-                <div class="training-content">
-                    <div class="wod-name">"FRAN"</div>
-                    <div class="wod-type">For Time</div>
-                    <div class="wod-details">
-                        <div class="wod-structure">21-15-9</div>
-                        <ul class="exercise-list">
-                            <li>Thrusters (43/30 kg)</li>
-                            <li>Pull-ups</li>
-                        </ul>
-                        <div class="wod-description">
-                            <p>El clásico benchmark. Tres rondas de thrusters y pull-ups con repeticiones descendentes.</p>
-                        </div>
-                        <div class="scaling">
-                            <strong>Scaling:</strong> Bandas en pull-ups, thrusters más ligeros
-                        </div>
+        function displaySavedFeedback(key, text) {
+            const container = document.getElementById(`saved-${key}`);
+            if (container) {
+                container.innerHTML = `
+                    <div class="saved-feedback">
+                        <strong>✓ Notas guardadas:</strong>
+                        ${text.replace(/\n/g, '<br>')}
                     </div>
-                </div>
-            </div>
-            
-            <div class="training-section weightlifting">
-                <div class="section-header">
-                    <h4><i class="fas fa-weight-hanging"></i> HALTEROFILIA</h4>
-                    <span class="time">17:00 - 19:00</span>
-                </div>
-                <div class="training-content">
-                    <div class="focus">Fuerza - Snatch</div>
-                    <div class="training-details">
-                        <div class="exercise-item">
-                            <span class="exercise-name">Snatch</span>
-                            <span class="exercise-sets">5x3 @80%</span>
-                        </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Overhead Squat</span>
-                            <span class="exercise-sets">4x5 @70%</span>
-                        </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Push Press</span>
-                            <span class="exercise-sets">3x8 @60%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section endurance">
-                <div class="section-header">
-                    <h4><i class="fas fa-running"></i> ENDURANCE</h4>
-                    <span class="time">19:30 - 20:30</span>
-                </div>
-                <div class="training-content">
-                    <div class="focus">Running Intervals</div>
-                    <div class="training-details">
-                        <div class="exercise-item">
-                            <span class="exercise-name">Calentamiento</span>
-                            <span class="exercise-desc">10 min trote suave</span>
-                        </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Intervalos</span>
-                            <span class="exercise-desc">6x400m @5K pace</span>
-                        </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Vuelta a calma</span>
-                            <span class="exercise-desc">10 min + estiramientos</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                `;
+            }
+        }
 
-        <!-- Martes 23/12/2025 -->
-        <div class="day-card tuesday">
-            <div class="day-header">
-                <h3>MARTES</h3>
-                <div class="date">23 DIC</div>
-            </div>
-            
-            <div class="training-section crossfit">
-                <div class="section-header">
-                    <h4><i class="fas fa-fire"></i> CROSSFIT</h4>
-                    <span class="time">07:00 - 21:00</span>
-                </div>
-                <div class="training-content">
-                    <div class="wod-name">"CINDY"</div>
-                    <div class="wod-type">AMRAP 20'</div>
-                    <div class="wod-details">
-                        <div class="wod-structure">AMRAP</div>
-                        <ul class="exercise-list">
-                            <li>5 Pull-ups</li>
-                            <li>10 Push-ups</li>
-                            <li>15 Air Squats</li>
-                        </ul>
-                        <div class="wod-description">
-                            <p>AMRAP clásico para trabajar resistencia muscular. Enfoque en mantener buen ritmo.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section weightlifting">
-                <div class="section-header">
-                    <h4><i class="fas fa-weight-hanging"></i> HALTEROFILIA</h4>
-                    <span class="time">17:00 - 19:00</span>
-                </div>
-                <div class="training-content">
-                    <div class="focus">Técnica - Clean & Jerk</div>
-                    <div class="training-details">
-                        <div class="exercise-item">
-                            <span class="exercise-name">Clean</span>
-                            <span class="exercise-sets">5x2 @75%</span>
-                        </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Front Squat</span>
-                            <span class="exercise-sets">4x5 @75%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section endurance">
-                <div class="section-header">
-                    <h4><i class="fas fa-running"></i> ENDURANCE</h4>
-                    <span class="time">19:30 - 20:30</span>
-                </div>
-                <div class="training-content">
-                    <div class="focus">Rowing Intervals</div>
-                    <div class="training-details">
-                        <div class="exercise-item">
-                            <span class="exercise-name">Calentamiento</span>
-                            <span class="exercise-desc">2000m suave</span>
-                        </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Intervalos</span>
-                            <span class="exercise-desc">8x500m @2:00/500m</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        // Cerrar modal al hacer click fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('feedbackModal');
+            if (event.target == modal) {
+                closeFeedbackModal();
+            }
+        }
 
-        <!-- Miércoles 24/12/2025 -->
-        <div class="day-card wednesday">
-            <div class="day-header">
-                <h3>MIÉRCOLES</h3>
-                <div class="date">24 DIC</div>
-            </div>
-            
-            <div class="training-section crossfit">
-                <div class="section-header">
-                    <h4><i class="fas fa-fire"></i> CROSSFIT</h4>
-                    <span class="time">07:00 - 21:00</span>
-                </div>
-                <div class="training-content">
-                    <div class="wod-name">"NOCHEBUENA ESPECIAL"</div>
-                    <div class="wod-type">EMOM 30'</div>
-                    <div class="wod-details">
-                        <div class="wod-structure">Cada minuto durante 30'</div>
-                        <ul class="exercise-list">
-                            <li>Min 1: 10 Box Jumps (24/20")</li>
-                            <li>Min 2: 10 KB Swings (24/16 kg)</li>
-                            <li>Min 3: 10 Burpees</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section weightlifting rest-day">
-                <div class="section-header">
-                    <h4><i class="fas fa-weight-hanging"></i> HALTEROFILIA</h4>
-                    <span class="rest-label">REST DAY</span>
-                </div>
-                <div class="training-content">
-                    <div class="rest-message">
-                        <i class="fas fa-bed"></i>
-                        <p>Día de descanso activo</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section endurance rest-day">
-                <div class="section-header">
-                    <h4><i class="fas fa-running"></i> ENDURANCE</h4>
-                    <span class="rest-label">REST DAY</span>
-                </div>
-                <div class="training-content">
-                    <div class="rest-message">
-                        <i class="fas fa-bed"></i>
-                        <p>Día de descanso activo</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Jueves 25/12/2025 -->
-        <div class="day-card thursday">
-            <div class="day-header">
-                <h3>JUEVES</h3>
-                <div class="date">25 DIC</div>
-            </div>
-            
-            <div class="training-section crossfit rest-day">
-                <div class="section-header">
-                    <h4><i class="fas fa-fire"></i> CROSSFIT</h4>
-                    <span class="rest-label">NAVIDAD</span>
-                </div>
-                <div class="training-content">
-                    <div class="rest-message">
-                        <i class="fas fa-gift"></i>
-                        <p>¡Feliz Navidad!</p>
-                        <small>Box cerrado</small>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section weightlifting rest-day">
-                <div class="section-header">
-                    <h4><i class="fas fa-weight-hanging"></i> HALTEROFILIA</h4>
-                    <span class="rest-label">NAVIDAD</span>
-                </div>
-                <div class="training-content">
-                    <div class="rest-message">
-                        <i class="fas fa-gift"></i>
-                        <p>¡Feliz Navidad!</p>
-                        <small>Box cerrado</small>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section endurance rest-day">
-                <div class="section-header">
-                    <h4><i class="fas fa-running"></i> ENDURANCE</h4>
-                    <span class="rest-label">NAVIDAD</span>
-                </div>
-                <div class="training-content">
-                    <div class="rest-message">
-                        <i class="fas fa-gift"></i>
-                        <p>¡Feliz Navidad!</p>
-                        <small>Box cerrado</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Viernes 26/12/2025 -->
-        <div class="day-card friday">
-            <div class="day-header">
-                <h3>VIERNES</h3>
-                <div class="date">26 DIC</div>
-            </div>
-            
-            <div class="training-section crossfit">
-                <div class="section-header">
-                    <h4><i class="fas fa-fire"></i> CROSSFIT</h4>
-                    <span class="time">07:00 - 21:00</span>
-                </div>
-                <div class="training-content">
-                    <div class="wod-name">"GRACE"</div>
-                    <div class="wod-type">For Time</div>
-                    <div class="wod-details">
-                        <div class="wod-structure">30 Clean & Jerk</div>
-                        <ul class="exercise-list">
-                            <li>Clean & Jerk (60/43 kg)</li>
-                        </ul>
-                        <div class="wod-description">
-                            <p>30 repeticiones de Clean & Jerk por tiempo. Encontrar un ritmo sostenible es clave.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section weightlifting">
-                <div class="section-header">
-                    <h4><i class="fas fa-weight-hanging"></i> HALTEROFILIA</h4>
-                    <span class="time">17:00 - 19:00</span>
-                </div>
-                <div class="training-content">
-                    <div class="focus">Potencia - Snatch</div>
-                    <div class="training-details">
-                        <div class="exercise-item">
-                            <span class="exercise-name">Power Snatch</span>
-                            <span class="exercise-sets">5x2 @70%</span>
-                        </div>
-                        <div class="exercise-item">
-                            <span class="exercise-name">Snatch Pull</span>
-                            <span class="exercise-sets">4x3 @90%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section endurance">
-                <div class="section-header">
-                    <h4><i class="fas fa-running"></i> ENDURANCE</h4>
-                    <span class="time">19:30 - 20:30</span>
-                </div>
-                <div class="training-content">
-                    <div class="focus">Assault Bike</div>
-                    <div class="training-details">
-                        <div class="exercise-item">
-                            <span class="exercise-name">Intervalos</span>
-                            <span class="exercise-desc">10x30s/30s (máxima intensidad)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sábado 27/12/2025 -->
-        <div class="day-card saturday">
-            <div class="day-header">
-                <h3>SÁBADO</h3>
-                <div class="date">27 DIC</div>
-            </div>
-            
-            <div class="training-section crossfit">
-                <div class="section-header">
-                    <h4><i class="fas fa-fire"></i> CROSSFIT</h4>
-                    <span class="time">09:00 - 13:00</span>
-                </div>
-                <div class="training-content">
-                    <div class="wod-name">"HERO WOD: MURPH"</div>
-                    <div class="wod-type">For Time (con chaleco)</div>
-                    <div class="wod-details">
-                        <div class="wod-structure">1 mi - 100-200-300 - 1 mi</div>
-                        <ul class="exercise-list">
-                            <li>1 mile Run</li>
-                            <li>100 Pull-ups</li>
-                            <li>200 Push-ups</li>
-                            <li>300 Air Squats</li>
-                            <li>1 mile Run</li>
-                        </ul>
-                        <div class="scaling">
-                            <strong>Scaling:</strong> Sin chaleco, bandas en pull-ups
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section weightlifting">
-                <div class="section-header">
-                    <h4><i class="fas fa-weight-hanging"></i> HALTEROFILIA</h4>
-                    <span class="time">11:00 - 12:30</span>
-                </div>
-                <div class="training-content">
-                    <div class="focus">Sesión Técnica</div>
-                    <div class="training-details">
-                        <div class="exercise-item">
-                            <span class="exercise-name">Snatch Balance</span>
-                            <span class="exercise-sets">5x3 @50%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="training-section endurance">
-                <div class="section-header">
-                    <h4><i class="fas fa-running"></i> ENDURANCE</h4>
-                    <span class="time">13:00 - 14:00</span>
-                </div>
-                <div class="training-content">
-                    <div class="focus">Long Slow Distance</div>
-                    <div class="training-details">
-                        <div class="exercise-item">
-                            <span class="exercise-name">Running</span>
-                            <span class="exercise-desc">5K a ritmo conversación</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <script src="aap.js"></script>
+        // Cerrar modal con tecla ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeFeedbackModal();
+            }
+        });
+    </script>
 </body>
 </html>
