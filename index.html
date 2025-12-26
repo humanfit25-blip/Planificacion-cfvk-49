@@ -431,39 +431,77 @@
             color: var(--oro-navidad);
         }
 
-        /* FEEDBACK BUTTON */
+        /* FEEDBACK CONTENT */
+        .feedback-content {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(26, 26, 26, 0.6);
+            border-radius: 10px;
+            border-left: 3px solid var(--burdeos);
+            display: none; /* Oculto por defecto */
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .feedback-content.show {
+            display: block;
+        }
+
+        .feedback-content strong {
+            color: var(--burdeos);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* FEEDBACK BUTTON - MODIFICADO */
         .feedback-btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: space-between;
+            width: 100%;
             margin-top: 20px;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, var(--burdeos) 0%, #ff0055 100%);
-            color: white;
-            border: none;
-            border-radius: 30px;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.2) 0%, rgba(139, 21, 56, 0.4) 100%);
+            color: var(--texto-principal);
+            border: 1px solid rgba(139, 21, 56, 0.5);
+            border-radius: 10px;
             font-family: 'Barlow', sans-serif;
             font-weight: 600;
-            font-size: 0.9em;
+            font-size: 0.95em;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-transform: uppercase;
-            letter-spacing: 1px;
             position: relative;
             overflow: hidden;
             z-index: 1;
             transform: translateZ(0);
-            box-shadow: 0 5px 20px rgba(139, 21, 56, 0.4);
         }
 
         .feedback-btn:hover {
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.3) 0%, rgba(139, 21, 56, 0.5) 100%);
+            border-color: var(--burdeos);
             transform: translateY(-3px) translateZ(10px);
-            box-shadow: 0 10px 30px rgba(139, 21, 56, 0.6);
-            letter-spacing: 1.5px;
+            box-shadow: 0 8px 20px rgba(139, 21, 56, 0.3);
         }
 
-        .feedback-btn:active {
-            transform: translateY(0) translateZ(5px);
+        .feedback-btn.active {
+            background: linear-gradient(135deg, rgba(139, 21, 56, 0.4) 0%, rgba(139, 21, 56, 0.6) 100%);
+            border-color: var(--burdeos);
+        }
+
+        .feedback-btn i {
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+
+        .feedback-btn.active i {
+            transform: rotate(180deg);
         }
 
         .feedback-btn::before {
@@ -473,17 +511,13 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             transition: left 0.5s ease;
             z-index: -1;
         }
 
         .feedback-btn:hover::before {
             left: 100%;
-        }
-
-        .feedback-btn i {
-            font-size: 1.1em;
         }
 
         /* RESPONSIVE */
@@ -526,6 +560,11 @@
             
             .day-name {
                 font-size: 2em;
+            }
+            
+            .feedback-btn {
+                padding: 10px 15px;
+                font-size: 0.9em;
             }
         }
     </style>
@@ -600,11 +639,17 @@
                             Rest 2:00 between sets
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Sesión de fuerza y potencia de tren superior. El shoulder press estricto desarrolla base, el push press añade componente pliométrico. El muscle snatch es técnico - enfatiza la extensión completa antes del pull bajo la barra (pausa de 2” en cadera). Power snatch cierra con velocidad. Orden importante: de estricto a explosivo. Total: 60-75 minutos. Ajusta porcentajes según nivel técnico del atleta.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('haltero', 'Lunes 29/12')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <!-- Botón de Feedback -->
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <!-- Contenido del Feedback (oculto por defecto) -->
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Sesión de fuerza y potencia de tren superior. El shoulder press estricto desarrolla base, el push press añade componente pliométrico. El muscle snatch es técnico - enfatiza la extensión completa antes del pull bajo la barra (pausa de 2” en cadera). Power snatch cierra con velocidad. Orden importante: de estricto a explosivo. Total: 60-75 minutos. Ajusta porcentajes según nivel técnico del atleta.
+                        </div>
                     </div>
                 </div>
 
@@ -631,11 +676,15 @@
                             • Every minute until you finish the wall climbs, complete 20 Double Unders
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> WOD de alta intensidad con doble penalty system. Asegúrate de que los atletas entiendan que son DOS secciones separadas: primero completan los 30 hang clusters con penalty de burpees cada minuto, y DESPUÉS atacan los wall climbs con penalty de double unders. El EMOM inicial es activación neuromuscular - vigila técnica en front squats con fatiga. Tiempo estimado total: 25-35 minutos. Scaling: Reduce reps de clusters (20-25), worm walks en lugar de wall climbs, singles en lugar de DU.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('crossfit', 'Lunes 29/12')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            WOD de alta intensidad con doble penalty system. Asegúrate de que los atletas entiendan que son DOS secciones separadas: primero completan los 30 hang clusters con penalty de burpees cada minuto, y DESPUÉS atacan los wall climbs con penalty de double unders. El EMOM inicial es activación neuromuscular - vigila técnica en front squats con fatiga. Tiempo estimado total: 25-35 minutos. Scaling: Reduce reps de clusters (20-25), worm walks en lugar de wall climbs, singles en lugar de DU.
+                        </div>
                     </div>
                 </div>
 
@@ -651,11 +700,15 @@
                             • 10 Box Jumps (60/50 cm)
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Motor aeróbico constante con transiciones rápidas. El cap de 35' es fundamental - si los atletas no completan las 10 rondas, registran rondas + reps. Cada ronda debería tomar 3-3.5 minutos. La clave es mantener pace sostenible en la carrera (no sprintar) y ser eficientes en las transiciones. Scaling: step-ups en lugar de box jumps, singles en lugar de DU, reducir peso del goblet.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('endurance', 'Lunes 29/12')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Motor aeróbico constante con transiciones rápidas. El cap de 35' es fundamental - si los atletas no completan las 10 rondas, registran rondas + reps. Cada ronda debería tomar 3-3.5 minutos. La clave es mantener pace sostenible en la carrera (no sprintar) y ser eficientes en las transiciones. Scaling: step-ups en lugar de box jumps, singles en lugar de DU, reducir peso del goblet.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -690,11 +743,15 @@
                             Rest 2:00 between sets
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Sesión de tirón + recepción. El deadlift con tempo excéntrico de 3” desarrolla control y fuerza isométrica. Squat clean trabaja posición de recepción profunda - cuida movilidad de tobillo/cadera. Power clean cierra con explosividad - la clave es velocidad bajo la barra, no altura del pull. Progresión lógica: fuerza base → técnica completa → potencia. Total: 60-75 minutos.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('haltero', 'Martes 30/12')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Sesión de tirón + recepción. El deadlift con tempo excéntrico de 3” desarrolla control y fuerza isométrica. Squat clean trabaja posición de recepción profunda - cuida movilidad de tobillo/cadera. Power clean cierra con explosividad - la clave es velocidad bajo la barra, no altura del pull. Progresión lógica: fuerza base → técnica completa → potencia. Total: 60-75 minutos.
+                        </div>
                     </div>
                 </div>
 
@@ -718,11 +775,15 @@
                             • 10 Knees-to-Elbows
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Dos bloques de trabajo con descanso programado. El descanso de 2' es estratégico - permite recuperación parcial sin enfriar completamente. El primer bloque trabaja posterior chain + pulling vertical, el segundo añade overhead + core. Tiempo objetivo: 12-16 minutos por bloque (24-32' totales sin contar rest). Scaling: reduce reps (3 rounds), regular pull-ups, knee raises, reduce peso KB.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('crossfit', 'Martes 30/12')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Dos bloques de trabajo con descanso programado. El descanso de 2' es estratégico - permite recuperación parcial sin enfriar completamente. El primer bloque trabaja posterior chain + pulling vertical, el segundo añade overhead + core. Tiempo objetivo: 12-16 minutos por bloque (24-32' totales sin contar rest). Scaling: reduce reps (3 rounds), regular pull-ups, knee raises, reduce peso KB.
+                        </div>
                     </div>
                 </div>
 
@@ -742,11 +803,15 @@
                         
                         <div class="workout-title">Every 5 minutes, all 3 teammates run 100m together</div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Team chipper con penalty de carrera colectiva. La carrera cada 5' obliga a gestión de tiempo - si están en medio de un movimiento, deben parar, correr los 3 juntos, y retomar. Estrategia: dividir trabajo en chunks (ej: 30 cal / 50 DB snatch / 50 air squats por persona). La estructura es simétrica (cal-DB movement-squats-singles-squats-DB movement-cal). Tiempo estimado: 35-45 minutos. Scaling: reduce reps totales (75 cal, 150 DB movements, 100 squats, 300 singles).</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('endurance', 'Martes 30/12')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Team chipper con penalty de carrera colectiva. La carrera cada 5' obliga a gestión de tiempo - si están en medio de un movimiento, deben parar, correr los 3 juntos, y retomar. Estrategia: dividir trabajo en chunks (ej: 30 cal / 50 DB snatch / 50 air squats por persona). La estructura es simétrica (cal-DB movement-squats-singles-squats-DB movement-cal). Tiempo estimado: 35-45 minutos. Scaling: reduce reps totales (75 cal, 150 DB movements, 100 squats, 300 singles).
+                        </div>
                     </div>
                 </div>
             </div>
@@ -775,11 +840,15 @@
                             Rest 3:30 between sets
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Sesión de máximos técnicos para cerrar el año. NO es test de 1RM - es "heavy single/complex" donde priorizamos técnica perfecta. Si la técnica se rompe, paramos ahí. Después del heavy, bajamos a porcentajes para trabajo de calidad. El snatch es el movimiento más técnico - asegura movilidad adecuada en warm-up. Clean & jerk permite cargas mayores. Descansos largos son necesarios para recuperación del SNC. Total: 75-90 minutos. Perfecto para atletas avanzados; scaled puede hacer power versions.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('haltero', 'Miércoles 31/12')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Sesión de máximos técnicos para cerrar el año. NO es test de 1RM - es "heavy single/complex" donde priorizamos técnica perfecta. Si la técnica se rompe, paramos ahí. Después del heavy, bajamos a porcentajes para trabajo de calidad. El snatch es el movimiento más técnico - asegura movilidad adecuada en warm-up. Clean & jerk permite cargas mayores. Descansos largos son necesarios para recuperación del SNC. Total: 75-90 minutos. Perfecto para atletas avanzados; scaled puede hacer power versions.
+                        </div>
                     </div>
                 </div>
 
@@ -798,11 +867,15 @@
                             • 31 Wall Balls (9/6 kg)
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> El WOD simbólico de cierre de año: 52 semanas, 31 día, 12 mes, 20-25 por 2025. Es un AMRAP brutal - atletas RX completarán 2-4 rondas. La clave es gestión de ritmo desde la primera ronda - no sprintar los DU ni los BMU. Las calories son "choice" para distribuir máquinas y evitar cuellos de botella. Scaling crítico: C2B o burpee pull-ups en lugar de BMU, reduce peso de barbell y wall ball, singles en lugar de DU. Brief importante: este WOD celebra el año, no es competición - que disfruten el sufrimiento.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('crossfit', 'Miércoles 31/12')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            El WOD simbólico de cierre de año: 52 semanas, 31 día, 12 mes, 20-25 por 2025. Es un AMRAP brutal - atletas RX completarán 2-4 rondas. La clave es gestión de ritmo desde la primera ronda - no sprintar los DU ni los BMU. Las calories son "choice" para distribuir máquinas y evitar cuellos de botella. Scaling crítico: C2B o burpee pull-ups en lugar de BMU, reduce peso de barbell y wall ball, singles en lugar de DU. Brief importante: este WOD celebra el año, no es competición - que disfruten el sufrimiento.
+                        </div>
                     </div>
                 </div>
 
@@ -832,11 +905,15 @@
                             • Repeat 4 rounds
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Estructura genial con punto de reagrupación. El 1km empieza en el minuto 12 - los atletas rápidos (sub 4:30) tendrán 3-5' de descanso antes del minuto 20, los lentos llegarán justo. TODOS empiezan el segundo EMOM en el minuto 20, sin importar cuándo terminaron de correr. Esto recompensa el motor aeróbico pero no hunde a los scaled. Brief crítico: explicar que el minuto 20 es inicio fijo para todos. Primer EMOM es upper body + legs, segundo EMOM es full body + core. Tiempo total: 32 minutos. Scaling: reduce peso de DB/KB, reduce reps de devil press (5).</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('endurance', 'Miércoles 31/12')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Estructura genial con punto de reagrupación. El 1km empieza en el minuto 12 - los atletas rápidos (sub 4:30) tendrán 3-5' de descanso antes del minuto 20, los lentos llegarán justo. TODOS empiezan el segundo EMOM en el minuto 20, sin importar cuándo terminaron de correr. Esto recompensa el motor aeróbico pero no hunde a los scaled. Brief crítico: explicar que el minuto 20 es inicio fijo para todos. Primer EMOM es upper body + legs, segundo EMOM es full body + core. Tiempo total: 32 minutos. Scaling: reduce peso de DB/KB, reduce reps de devil press (5).
+                        </div>
                     </div>
                 </div>
             </div>
@@ -853,11 +930,16 @@
                     <div class="festivo-icon">🎇</div>
                     <div class="program-title">HALTEROFILIA</div>
                     <div class="festivo-text">Rest Day - Celebrate responsibly</div>
-                    <p><strong>FEEDBACK PARA COACHES:</strong> Día de descanso completo. Los atletas vienen de una semana intensa (especialmente el miércoles con "TWELVE GUNSHOT" y "END GAME"). La recuperación es parte del entrenamiento. Anima a los atletas a hidratarse bien, comer adecuadamente, y prepararse mentalmente para la semana que viene. El viernes arrancamos 2026 con Hero WODs - necesitan estar frescos.</p>
                     
-                    <button class="feedback-btn" onclick="openFeedback('haltero', 'Jueves 01/01')">
-                        <i class="fas fa-comment-medical"></i> Añadir Feedback
+                    <button class="feedback-btn" onclick="toggleFeedback(this)">
+                        <span>FEEDBACK PARA COACHES</span>
+                        <i class="fas fa-chevron-down"></i>
                     </button>
+                    
+                    <div class="feedback-content">
+                        <strong>📋 FEEDBACK PARA COACHES:</strong>
+                        Día de descanso completo. Los atletas vienen de una semana intensa (especialmente el miércoles con "TWELVE GUNSHOT" y "END GAME"). La recuperación es parte del entrenamiento. Anima a los atletas a hidratarse bien, comer adecuadamente, y prepararse mentalmente para la semana que viene. El viernes arrancamos 2026 con Hero WODs - necesitan estar frescos.
+                    </div>
                 </div>
 
                 <div class="program-section crossfit festivo">
@@ -865,9 +947,15 @@
                     <div class="program-title">CROSSFIT</div>
                     <div class="festivo-text">Rest Day - Celebrate responsibly</div>
                     
-                    <button class="feedback-btn" onclick="openFeedback('crossfit', 'Jueves 01/01')">
-                        <i class="fas fa-comment-medical"></i> Añadir Feedback
+                    <button class="feedback-btn" onclick="toggleFeedback(this)">
+                        <span>FEEDBACK PARA COACHES</span>
+                        <i class="fas fa-chevron-down"></i>
                     </button>
+                    
+                    <div class="feedback-content">
+                        <strong>📋 FEEDBACK PARA COACHES:</strong>
+                        Día de descanso. Animar a los atletas a recuperarse completamente para la semana intensa que viene. Es un buen día para estiramientos activos y movilidad si algún atleta quiere venir.
+                    </div>
                 </div>
 
                 <div class="program-section endurance festivo">
@@ -875,9 +963,15 @@
                     <div class="program-title">ENDURANCE</div>
                     <div class="festivo-text">Rest Day - Celebrate responsibly</div>
                     
-                    <button class="feedback-btn" onclick="openFeedback('endurance', 'Jueves 01/01')">
-                        <i class="fas fa-comment-medical"></i> Añadir Feedback
+                    <button class="feedback-btn" onclick="toggleFeedback(this)">
+                        <span>FEEDBACK PARA COACHES</span>
+                        <i class="fas fa-chevron-down"></i>
                     </button>
+                    
+                    <div class="feedback-content">
+                        <strong>📋 FEEDBACK PARA COACHES:</strong>
+                        Descanso completo. Recordar a los atletas que la recuperación es igual de importante que el entrenamiento. El viernes tendremos Hero WODs que requieren energía y concentración.
+                    </div>
                 </div>
             </div>
 
@@ -905,11 +999,15 @@
                             Focus: Speed + Precision
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Sesión de fuerza + técnica para arrancar 2026. Back squat con tempo excéntrico desarrolla control y time under tension - es trabajo de hipertrofia/fuerza, no potencia. El snatch en EMOM 90" permite repeticiones de calidad sin fatiga acumulada - cada rep debe ser técnicamente perfecta. Si un atleta falla 2 reps consecutivas, baja el peso 5-10%. Total: 60-70 minutos. Perfecto para volver después del descanso de Año Nuevo.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('haltero', 'Viernes 02/01')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Sesión de fuerza + técnica para arrancar 2026. Back squat con tempo excéntrico desarrolla control y time under tension - es trabajo de hipertrofia/fuerza, no potencia. El snatch en EMOM 90" permite repeticiones de calidad sin fatiga acumulada - cada rep debe ser técnicamente perfecta. Si un atleta falla 2 reps consecutivas, baja el peso 5-10%. Total: 60-70 minutos. Perfecto para volver después del descanso de Año Nuevo.
+                        </div>
                     </div>
                 </div>
 
@@ -928,11 +1026,15 @@
                             • 19 Box Jump Overs (60/50 cm)
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Hero WOD en honor a Navy Petty Officer 2nd Class Sean Monty. Los números tienen significado (fecha de nacimiento/servicio). Es un WOD de volumen alto - 4 rondas de 56 squat cleans + 44 pull-ups/push-ups + 184 box jump overs. Tiempo objetivo: 25-35 minutos para RX. La estrategia es mantener sets pequeños y sostenibles en squat cleans (2-3 reps) y pull-ups (3-5 reps). Los BJO son el "descanso activo". Scaling esencial: reduce peso de barbell (60/40 kg o menos), step-overs en lugar de jumps, reduce a 3 rondas si es necesario. Brief: explicar el significado del WOD para dar contexto y propósito.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('crossfit', 'Viernes 02/01')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Hero WOD en honor a Navy Petty Officer 2nd Class Sean Monty. Los números tienen significado (fecha de nacimiento/servicio). Es un WOD de volumen alto - 4 rondas de 56 squat cleans + 44 pull-ups/push-ups + 184 box jump overs. Tiempo objetivo: 25-35 minutos para RX. La estrategia es mantener sets pequeños y sostenibles en squat cleans (2-3 reps) y pull-ups (3-5 reps). Los BJO son el "descanso activo". Scaling esencial: reduce peso de barbell (60/40 kg o menos), step-overs en lugar de jumps, reduce a 3 rondas si es necesario. Brief: explicar el significado del WOD para dar contexto y propósito.
+                        </div>
                     </div>
                 </div>
 
@@ -954,11 +1056,15 @@
                             • 800m Run
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Hero WOD en honor a los 5 oficiales de Dallas caídos en 2016. Estructura: buy-in de 50 burpees, 5 rondas de 50 reps each (250 reps totales), cash-out de 800m. Tiempo objetivo: 30-40 minutos. La clave es pace management - los burpees iniciales queman, no ir all-out. En las 5 rondas, mantener sets de 5 reps y transiciones rápidas. El run final será duro con las piernas cargadas. Scaling: reduce burpees (30-40), reduce peso de wall ball y S2OH, step-ups en lugar de box jumps, reduce a 400m run. Brief importante: contexto del WOD para honrar la memoria.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('endurance', 'Viernes 02/01')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Hero WOD en honor a los 5 oficiales de Dallas caídos en 2016. Estructura: buy-in de 50 burpees, 5 rondas de 50 reps each (250 reps totales), cash-out de 800m. Tiempo objetivo: 30-40 minutos. La clave es pace management - los burpees iniciales queman, no ir all-out. En las 5 rondas, mantener sets de 5 reps y transiciones rápidas. El run final será duro con las piernas cargadas. Scaling: reduce burpees (30-40), reduce peso de wall ball y S2OH, step-ups en lugar de box jumps, reduce a 400m run. Brief importante: contexto del WOD para honrar la memoria.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -993,11 +1099,15 @@
                             Rest 2:00 between sets
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Sesión técnica de snatch progresiva. Muscle snatch con pausas en cadera y overhead desarrolla fuerza en posiciones clave y control. Drop snatch trabaja velocidad bajo la barra y confianza en recepción overhead - es el movimiento más difícil técnicamente. Power snatch cierra con cargas moderadas-altas aplicando las posiciones trabajadas. Orden importante: de técnico/ligero a potencia. Total: 60-70 minutos. Perfecto para fin de semana - refinar técnica sin acumular fatiga excesiva.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('haltero', 'Sábado 03/01')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Sesión técnica de snatch progresiva. Muscle snatch con pausas en cadera y overhead desarrolla fuerza en posiciones clave y control. Drop snatch trabaja velocidad bajo la barra y confianza en recepción overhead - es el movimiento más difícil técnicamente. Power snatch cierra con cargas moderadas-altas aplicando las posiciones trabajadas. Orden importante: de técnico/ligero a potencia. Total: 60-70 minutos. Perfecto para fin de semana - refinar técnica sin acumular fatiga excesiva.
+                        </div>
                     </div>
                 </div>
 
@@ -1029,11 +1139,15 @@
                             • Rotate every 30 reps or when form breaks
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Team WOD para cerrar la semana con comunidad. STATION 1: Teammate A hace devil press, B y C descansan. A elige cuándo rotar (ej: cada 10 reps). STATION 2: mientras uno hace back squats, los otros 2 corren 100m juntos - cuando regresan, rotan. STATION 3: trabajo simultáneo - uno hace bench, otro curls, otro plank. Rotan cada 30 reps o cuando la forma técnica se rompe. Tiempo estimado: 35-45 minutos. La clave es comunicación entre compañeros y gestión de fatiga. Scaling: reduce reps totales (40 DP, 90 squats, 60 bench/curls), reduce peso.</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('crossfit', 'Sábado 03/01')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Team WOD para cerrar la semana con comunidad. STATION 1: Teammate A hace devil press, B y C descansan. A elige cuándo rotar (ej: cada 10 reps). STATION 2: mientras uno hace back squats, los otros 2 corren 100m juntos - cuando regresan, rotan. STATION 3: trabajo simultáneo - uno hace bench, otro curls, otro plank. Rotan cada 30 reps o cuando la forma técnica se rompe. Tiempo estimado: 35-45 minutos. La clave es comunicación entre compañeros y gestión de fatiga. Scaling: reduce reps totales (40 DP, 90 squats, 60 bench/curls), reduce peso.
+                        </div>
                     </div>
                 </div>
 
@@ -1061,11 +1175,15 @@
                             • 200m Run
                         </div>
                         
-                        <p><strong>FEEDBACK PARA COACHES:</strong> Chipper simétrico estilo "there and back" - estructura espejo. Empieza ligero (200m), construye hasta 800m en el centro, y regresa. Total de carrera: 3km. Los kettlebell thrusters en el medio son el punto más duro - solo 10 reps pero después de 800m run con piernas quemadas. Tiempo objetivo: 35-45 minutos. Estrategia: no sprintar las carreras cortas (200/400m), mantener pace sostenible. Los KB movements deben ser unbroken o sets grandes. Scaling: reduce peso KB (20/12 kg), singles en lugar de DU, reduce distancias de run (mantener estructura pero hacer 100/200/400/200/100).</p>
-                        
-                        <button class="feedback-btn" onclick="openFeedback('endurance', 'Sábado 03/01')">
-                            <i class="fas fa-comment-medical"></i> Añadir Feedback
+                        <button class="feedback-btn" onclick="toggleFeedback(this)">
+                            <span>FEEDBACK PARA COACHES</span>
+                            <i class="fas fa-chevron-down"></i>
                         </button>
+                        
+                        <div class="feedback-content">
+                            <strong>📋 FEEDBACK PARA COACHES:</strong>
+                            Chipper simétrico estilo "there and back" - estructura espejo. Empieza ligero (200m), construye hasta 800m en el centro, y regresa. Total de carrera: 3km. Los kettlebell thrusters en el medio son el punto más duro - solo 10 reps pero después de 800m run con piernas quemadas. Tiempo objetivo: 35-45 minutos. Estrategia: no sprintar las carreras cortas (200/400m), mantener pace sostenible. Los KB movements deben ser unbroken o sets grandes. Scaling: reduce peso KB (20/12 kg), singles en lugar de DU, reduce distancias de run (mantener estructura pero hacer 100/200/400/200/100).
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1073,15 +1191,22 @@
     </div>
 
     <script>
-        function openFeedback(discipline, day) {
-            // En un entorno real, aquí se abriría un modal o se enviaría a un formulario
-            // Por ahora, simulamos la acción con un alert
-            alert(`Feedback para ${discipline.toUpperCase()} - ${day}\n\n(En la versión final, esto abriría un formulario para que los coaches añadan sus comentarios)`);
+        // Función para mostrar/ocultar el feedback
+        function toggleFeedback(button) {
+            const feedbackContent = button.nextElementSibling;
+            button.classList.toggle('active');
             
-            // Para una implementación real, podrías usar:
-            // 1. Modal con formulario
-            // 2. Envío a API REST
-            // 3. Integración con Google Forms o similar
+            if (feedbackContent.classList.contains('show')) {
+                feedbackContent.classList.remove('show');
+                setTimeout(() => {
+                    feedbackContent.style.display = 'none';
+                }, 300);
+            } else {
+                feedbackContent.style.display = 'block';
+                setTimeout(() => {
+                    feedbackContent.classList.add('show');
+                }, 10);
+            }
         }
         
         // Efecto 3D adicional en las tarjetas al hacer hover
@@ -1154,6 +1279,10 @@
         // Inicializar efectos cuando la página cargue
         document.addEventListener('DOMContentLoaded', () => {
             createParticles();
+            
+            // Opcional: abrir automáticamente el primer feedback como ejemplo
+            // const firstFeedbackBtn = document.querySelector('.feedback-btn');
+            // if (firstFeedbackBtn) toggleFeedback(firstFeedbackBtn);
         });
     </script>
 </body>
